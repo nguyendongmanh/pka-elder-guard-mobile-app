@@ -1,0 +1,11 @@
+{
+  "@@locale": "en",
+  "appTitle": "Elder Guard",
+  "@appTitle": {
+    "description": "The application title."
+  },
+  "welcomeMessage": "Welcome to Elder Guard",
+  "@welcomeMessage": {
+    "description": "A short welcome message shown on the home screen."
+  }
+}
