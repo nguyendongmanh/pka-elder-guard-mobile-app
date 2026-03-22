@@ -1,5 +1,50 @@
 {
   "@@locale": "vi",
   "appTitle": "Elder Guard",
-  "welcomeMessage": "Chao mung den voi Elder Guard"
+  "loginAction": "Đăng nhập",
+  "registerAction": "Đăng ký",
+  "emailHint": "Email",
+  "passwordHint": "Mật khẩu",
+  "usernameHint": "Tên người dùng",
+  "forgotPassword": "Quên mật khẩu?",
+  "noAccountPrompt": "Chưa có tài khoản?",
+  "hasAccountPrompt": "Đã có tài khoản?",
+  "signUpNow": "Đăng ký ngay",
+  "signInNow": "Đăng nhập ngay",
+  "loginIntro": "Vui lòng đăng nhập để tiếp tục",
+  "registerIntro": "Vui lòng điền thông tin để tạo tài khoản",
+  "switchLanguageLabel": "Đổi ngôn ngữ",
+  "requiredFieldError": "Vui lòng nhập thông tin này.",
+  "invalidEmailError": "Vui lòng nhập email hợp lệ.",
+  "passwordTooShortError": "Mật khẩu phải có ít nhất 6 ký tự.",
+  "usernameTooShortError": "Tên người dùng phải có ít nhất 3 ký tự.",
+  "registerSuccessMessage": "Tạo tài khoản thành công. Hãy đăng nhập để tiếp tục.",
+  "forgotPasswordUnavailable": "Chức năng quên mật khẩu chưa khả dụng.",
+  "emailAlreadyExistsError": "Email này đã được đăng ký.",
+  "userNotFoundError": "Không tìm thấy tài khoản với email này.",
+  "incorrectPasswordError": "Mật khẩu không chính xác.",
+  "validationErrorMessage": "Vui lòng kiểm tra lại thông tin đã nhập.",
+  "networkErrorMessage": "Không thể kết nối tới máy chủ. Hãy kiểm tra API localhost.",
+  "serverErrorMessage": "Máy chủ trả về phản hồi không hợp lệ.",
+  "unknownErrorMessage": "Đã xảy ra lỗi. Vui lòng thử lại.",
+  "homeTitle": "Chào mừng quay lại",
+  "homeSubtitle": "Bạn đã đăng nhập và sẵn sàng gọi các API cần xác thực.",
+  "signedInAs": "Đăng nhập với {email}",
+  "@signedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "connectedToApi": "Đang kết nối tới {baseUrl}",
+  "@connectedToApi": {
+    "placeholders": {
+      "baseUrl": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutAction": "Đăng xuất",
+  "loadingMessage": "Đang chuẩn bị ElderGuard..."
 }

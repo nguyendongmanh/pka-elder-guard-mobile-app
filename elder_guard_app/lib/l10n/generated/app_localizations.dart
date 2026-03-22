@@ -101,11 +101,197 @@ abstract class AppLocalizations {
   /// **'Elder Guard'**
   String get appTitle;
 
-  /// A short welcome message shown on the home screen.
+  /// No description provided for @loginAction.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Elder Guard'**
-  String get welcomeMessage;
+  /// **'Sign In'**
+  String get loginAction;
+
+  /// No description provided for @registerAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get registerAction;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailHint;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordHint;
+
+  /// No description provided for @usernameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get usernameHint;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// No description provided for @noAccountPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get noAccountPrompt;
+
+  /// No description provided for @hasAccountPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get hasAccountPrompt;
+
+  /// No description provided for @signUpNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up now'**
+  String get signUpNow;
+
+  /// No description provided for @signInNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in now'**
+  String get signInNow;
+
+  /// No description provided for @loginIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in to continue'**
+  String get loginIntro;
+
+  /// No description provided for @registerIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your details to create an account'**
+  String get registerIntro;
+
+  /// No description provided for @switchLanguageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch language'**
+  String get switchLanguageLabel;
+
+  /// No description provided for @requiredFieldError.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required.'**
+  String get requiredFieldError;
+
+  /// No description provided for @invalidEmailError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get invalidEmailError;
+
+  /// No description provided for @passwordTooShortError.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters.'**
+  String get passwordTooShortError;
+
+  /// No description provided for @usernameTooShortError.
+  ///
+  /// In en, this message translates to:
+  /// **'Username must be at least 3 characters.'**
+  String get usernameTooShortError;
+
+  /// No description provided for @registerSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully. Please sign in.'**
+  String get registerSuccessMessage;
+
+  /// No description provided for @forgotPasswordUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Password recovery is not available yet.'**
+  String get forgotPasswordUnavailable;
+
+  /// No description provided for @emailAlreadyExistsError.
+  ///
+  /// In en, this message translates to:
+  /// **'This email is already registered.'**
+  String get emailAlreadyExistsError;
+
+  /// No description provided for @userNotFoundError.
+  ///
+  /// In en, this message translates to:
+  /// **'No account was found for this email.'**
+  String get userNotFoundError;
+
+  /// No description provided for @incorrectPasswordError.
+  ///
+  /// In en, this message translates to:
+  /// **'The password is incorrect.'**
+  String get incorrectPasswordError;
+
+  /// No description provided for @validationErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check the information you entered.'**
+  String get validationErrorMessage;
+
+  /// No description provided for @networkErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to connect to the server. Please check your localhost API.'**
+  String get networkErrorMessage;
+
+  /// No description provided for @serverErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The server returned an unexpected response.'**
+  String get serverErrorMessage;
+
+  /// No description provided for @unknownErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get unknownErrorMessage;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get homeTitle;
+
+  /// No description provided for @homeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You are signed in and ready to call protected APIs.'**
+  String get homeSubtitle;
+
+  /// No description provided for @signedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String signedInAs(String email);
+
+  /// No description provided for @connectedToApi.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected to {baseUrl}'**
+  String connectedToApi(String baseUrl);
+
+  /// No description provided for @logoutAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get logoutAction;
+
+  /// No description provided for @loadingMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing ElderGuard...'**
+  String get loadingMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

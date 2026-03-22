@@ -4,8 +4,50 @@
   "@appTitle": {
     "description": "The application title."
   },
-  "welcomeMessage": "Welcome to Elder Guard",
-  "@welcomeMessage": {
-    "description": "A short welcome message shown on the home screen."
-  }
+  "loginAction": "Sign In",
+  "registerAction": "Sign Up",
+  "emailHint": "Email",
+  "passwordHint": "Password",
+  "usernameHint": "Username",
+  "forgotPassword": "Forgot password?",
+  "noAccountPrompt": "Don't have an account?",
+  "hasAccountPrompt": "Already have an account?",
+  "signUpNow": "Sign up now",
+  "signInNow": "Sign in now",
+  "loginIntro": "Please sign in to continue",
+  "registerIntro": "Please enter your details to create an account",
+  "switchLanguageLabel": "Switch language",
+  "requiredFieldError": "This field is required.",
+  "invalidEmailError": "Please enter a valid email address.",
+  "passwordTooShortError": "Password must be at least 6 characters.",
+  "usernameTooShortError": "Username must be at least 3 characters.",
+  "registerSuccessMessage": "Account created successfully. Please sign in.",
+  "forgotPasswordUnavailable": "Password recovery is not available yet.",
+  "emailAlreadyExistsError": "This email is already registered.",
+  "userNotFoundError": "No account was found for this email.",
+  "incorrectPasswordError": "The password is incorrect.",
+  "validationErrorMessage": "Please check the information you entered.",
+  "networkErrorMessage": "Unable to connect to the server. Please check your localhost API.",
+  "serverErrorMessage": "The server returned an unexpected response.",
+  "unknownErrorMessage": "Something went wrong. Please try again.",
+  "homeTitle": "Welcome back",
+  "homeSubtitle": "You are signed in and ready to call protected APIs.",
+  "signedInAs": "Signed in as {email}",
+  "@signedInAs": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "connectedToApi": "Connected to {baseUrl}",
+  "@connectedToApi": {
+    "placeholders": {
+      "baseUrl": {
+        "type": "String"
+      }
+    }
+  },
+  "logoutAction": "Sign out",
+  "loadingMessage": "Preparing ElderGuard..."
 }
