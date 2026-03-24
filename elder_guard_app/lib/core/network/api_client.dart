@@ -16,11 +16,21 @@ class ApiClient {
 
   final http.Client _client;
 
+  Future<http.Response> get({
+    required String path,
+    Map<String, String>? headers,
+  }) {
+    return _sendGet(
+      Uri.parse('${AppConfig.baseUrl}$path'),
+      headers: <String, String>{'Accept': 'application/json', ...?headers},
+    );
+  }
+
   Future<http.Response> postJson({
     required String path,
     required Map<String, dynamic> body,
   }) {
-    return _send(
+    return _sendPost(
       Uri.parse('${AppConfig.baseUrl}$path'),
       headers: const <String, String>{
         'Accept': 'application/json',
@@ -34,7 +44,7 @@ class ApiClient {
     required String path,
     required Map<String, String> body,
   }) {
-    return _send(
+    return _sendPost(
       Uri.parse('${AppConfig.baseUrl}$path'),
       headers: const <String, String>{
         'Accept': 'application/json',
@@ -49,7 +59,24 @@ class ApiClient {
     );
   }
 
-  Future<http.Response> _send(
+  Future<http.Response> _sendGet(
+    Uri uri, {
+    required Map<String, String> headers,
+  }) async {
+    try {
+      return await _client
+          .get(uri, headers: headers)
+          .timeout(const Duration(seconds: 12));
+    } on TimeoutException {
+      throw const ApiException(ApiExceptionType.network);
+    } on http.ClientException {
+      throw const ApiException(ApiExceptionType.network);
+    } on Object {
+      throw const ApiException(ApiExceptionType.network);
+    }
+  }
+
+  Future<http.Response> _sendPost(
     Uri uri, {
     required Map<String, String> headers,
     required String body,

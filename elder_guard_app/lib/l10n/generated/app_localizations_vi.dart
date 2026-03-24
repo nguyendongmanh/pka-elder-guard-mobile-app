@@ -96,6 +96,124 @@ class AppLocalizationsVi extends AppLocalizations {
   String get homeSubtitle => 'Bạn đã đăng nhập và sẵn sàng gọi các API cần xác thực.';
 
   @override
+  String get navHome => 'Trang chủ';
+
+  @override
+  String get navMonitoring => 'Giám sát';
+
+  @override
+  String get navAlerts => 'Cảnh báo';
+
+  @override
+  String get navMenu => 'Menu';
+
+  @override
+  String dashboardHeartRateSummary(int value) {
+    return 'Nhịp tim trung bình: $value bpm';
+  }
+
+  @override
+  String dashboardStepSummary(int value) {
+    return 'Số bước chân: $value';
+  }
+
+  @override
+  String get monitoringTitle => 'Giám sát camera';
+
+  @override
+  String get monitoringSubtitle => 'Theo dõi nhanh các khu vực quan trọng trong nhà.';
+
+  @override
+  String get monitoringLivingRoomCamera => 'Camera phòng khách';
+
+  @override
+  String get monitoringEntryCamera => 'Camera cửa ra vào';
+
+  @override
+  String get monitoringLiveStatus => 'TRỰC TIẾP';
+
+  @override
+  String get monitoringRecentMovement => 'Phát hiện chuyển động 2 phút trước.';
+
+  @override
+  String get monitoringNoMovement => 'Yên tĩnh trong 20 phút gần đây.';
+
+  @override
+  String get alertsTitle => 'Cảnh báo chăm sóc';
+
+  @override
+  String get alertsSubtitle => 'Nhắc nhở và cập nhật hoạt động gần đây.';
+
+  @override
+  String get alertsMedicationReminderTitle => 'Nhắc uống thuốc';
+
+  @override
+  String get alertsMedicationReminderBody => '08:00 - Đã xác nhận uống thuốc buổi sáng.';
+
+  @override
+  String get alertsMovementUpdateTitle => 'Cập nhật di chuyển';
+
+  @override
+  String get alertsMovementUpdateBody => '21:10 - Phát hiện đi lại ban đêm.';
+
+  @override
+  String get menuTitle => 'Cài đặt và tài khoản';
+
+  @override
+  String get menuSubtitle => 'Quản lý phiên đăng nhập và tuỳ chọn ứng dụng.';
+
+  @override
+  String get notificationCenterTitle => 'Thông báo';
+
+  @override
+  String get notificationCenterSubtitle => 'Các sự kiện mới nhất lấy từ API giám sát.';
+
+  @override
+  String get notificationEmptyMessage => 'Chưa có thông báo nào.';
+
+  @override
+  String get notificationLoadingList => 'Đang tải danh sách thông báo...';
+
+  @override
+  String get notificationLoadingDetails => 'Đang tải chi tiết thông báo...';
+
+  @override
+  String get notificationRetryAction => 'Thử lại';
+
+  @override
+  String get notificationNotFoundMessage => 'Không tìm thấy thông báo này.';
+
+  @override
+  String notificationItemTitle(int cameraId) {
+    return 'Cảnh báo camera $cameraId';
+  }
+
+  @override
+  String notificationItemBody(String eventType, String timestamp) {
+    return 'Phát hiện $eventType lúc $timestamp';
+  }
+
+  @override
+  String notificationDetailTitle(int eventId) {
+    return 'Thông báo #$eventId';
+  }
+
+  @override
+  String get notificationFieldEventId => 'Mã sự kiện';
+
+  @override
+  String get notificationFieldCameraId => 'Mã camera';
+
+  @override
+  String get notificationFieldEventType => 'Loại sự kiện';
+
+  @override
+  String get notificationFieldConfidence => 'Độ tin cậy';
+
+  @override
+  String get notificationFieldTimestamp => 'Thời gian';
+
+  @override
   String signedInAs(String email) {
     return 'Đăng nhập với $email';
   }

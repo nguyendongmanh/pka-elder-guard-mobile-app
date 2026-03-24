@@ -269,6 +269,222 @@ abstract class AppLocalizations {
   /// **'You are signed in and ready to call protected APIs.'**
   String get homeSubtitle;
 
+  /// No description provided for @navHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// No description provided for @navMonitoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Monitoring'**
+  String get navMonitoring;
+
+  /// No description provided for @navAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts'**
+  String get navAlerts;
+
+  /// No description provided for @navMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu'**
+  String get navMenu;
+
+  /// No description provided for @dashboardHeartRateSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Heart Rate: {value} bpm'**
+  String dashboardHeartRateSummary(int value);
+
+  /// No description provided for @dashboardStepSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Step Count: {value}'**
+  String dashboardStepSummary(int value);
+
+  /// No description provided for @monitoringTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera monitoring'**
+  String get monitoringTitle;
+
+  /// No description provided for @monitoringSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep track of the most important areas in the home.'**
+  String get monitoringSubtitle;
+
+  /// No description provided for @monitoringLivingRoomCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Living room camera'**
+  String get monitoringLivingRoomCamera;
+
+  /// No description provided for @monitoringEntryCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Entrance camera'**
+  String get monitoringEntryCamera;
+
+  /// No description provided for @monitoringLiveStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE'**
+  String get monitoringLiveStatus;
+
+  /// No description provided for @monitoringRecentMovement.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent movement detected 2 min ago.'**
+  String get monitoringRecentMovement;
+
+  /// No description provided for @monitoringNoMovement.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet for the last 20 min.'**
+  String get monitoringNoMovement;
+
+  /// No description provided for @alertsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Care alerts'**
+  String get alertsTitle;
+
+  /// No description provided for @alertsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent reminders and activity updates.'**
+  String get alertsSubtitle;
+
+  /// No description provided for @alertsMedicationReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication reminder'**
+  String get alertsMedicationReminderTitle;
+
+  /// No description provided for @alertsMedicationReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'08:00 - Morning medication confirmed.'**
+  String get alertsMedicationReminderBody;
+
+  /// No description provided for @alertsMovementUpdateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Movement update'**
+  String get alertsMovementUpdateTitle;
+
+  /// No description provided for @alertsMovementUpdateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'21:10 - Night walk detected.'**
+  String get alertsMovementUpdateBody;
+
+  /// No description provided for @menuTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings and account'**
+  String get menuTitle;
+
+  /// No description provided for @menuSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage session details and app preferences.'**
+  String get menuSubtitle;
+
+  /// No description provided for @notificationCenterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationCenterTitle;
+
+  /// No description provided for @notificationCenterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest events fetched from the monitoring API.'**
+  String get notificationCenterSubtitle;
+
+  /// No description provided for @notificationEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications yet.'**
+  String get notificationEmptyMessage;
+
+  /// No description provided for @notificationLoadingList.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading notifications...'**
+  String get notificationLoadingList;
+
+  /// No description provided for @notificationLoadingDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading notification details...'**
+  String get notificationLoadingDetails;
+
+  /// No description provided for @notificationRetryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get notificationRetryAction;
+
+  /// No description provided for @notificationNotFoundMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This notification could not be found.'**
+  String get notificationNotFoundMessage;
+
+  /// No description provided for @notificationItemTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera {cameraId} alert'**
+  String notificationItemTitle(int cameraId);
+
+  /// No description provided for @notificationItemBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{eventType} detected at {timestamp}'**
+  String notificationItemBody(String eventType, String timestamp);
+
+  /// No description provided for @notificationDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification #{eventId}'**
+  String notificationDetailTitle(int eventId);
+
+  /// No description provided for @notificationFieldEventId.
+  ///
+  /// In en, this message translates to:
+  /// **'Event ID'**
+  String get notificationFieldEventId;
+
+  /// No description provided for @notificationFieldCameraId.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera ID'**
+  String get notificationFieldCameraId;
+
+  /// No description provided for @notificationFieldEventType.
+  ///
+  /// In en, this message translates to:
+  /// **'Event type'**
+  String get notificationFieldEventType;
+
+  /// No description provided for @notificationFieldConfidence.
+  ///
+  /// In en, this message translates to:
+  /// **'Confidence'**
+  String get notificationFieldConfidence;
+
+  /// No description provided for @notificationFieldTimestamp.
+  ///
+  /// In en, this message translates to:
+  /// **'Timestamp'**
+  String get notificationFieldTimestamp;
+
   /// No description provided for @signedInAs.
   ///
   /// In en, this message translates to:

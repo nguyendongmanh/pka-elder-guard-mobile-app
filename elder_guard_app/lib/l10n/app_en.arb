@@ -32,6 +32,80 @@
   "unknownErrorMessage": "Something went wrong. Please try again.",
   "homeTitle": "Welcome back",
   "homeSubtitle": "You are signed in and ready to call protected APIs.",
+  "navHome": "Home",
+  "navMonitoring": "Monitoring",
+  "navAlerts": "Alerts",
+  "navMenu": "Menu",
+  "dashboardHeartRateSummary": "Average Heart Rate: {value} bpm",
+  "@dashboardHeartRateSummary": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardStepSummary": "Step Count: {value}",
+  "@dashboardStepSummary": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "monitoringTitle": "Camera monitoring",
+  "monitoringSubtitle": "Keep track of the most important areas in the home.",
+  "monitoringLivingRoomCamera": "Living room camera",
+  "monitoringEntryCamera": "Entrance camera",
+  "monitoringLiveStatus": "LIVE",
+  "monitoringRecentMovement": "Recent movement detected 2 min ago.",
+  "monitoringNoMovement": "Quiet for the last 20 min.",
+  "alertsTitle": "Care alerts",
+  "alertsSubtitle": "Recent reminders and activity updates.",
+  "alertsMedicationReminderTitle": "Medication reminder",
+  "alertsMedicationReminderBody": "08:00 - Morning medication confirmed.",
+  "alertsMovementUpdateTitle": "Movement update",
+  "alertsMovementUpdateBody": "21:10 - Night walk detected.",
+  "menuTitle": "Settings and account",
+  "menuSubtitle": "Manage session details and app preferences.",
+  "notificationCenterTitle": "Notifications",
+  "notificationCenterSubtitle": "Latest events fetched from the monitoring API.",
+  "notificationEmptyMessage": "No notifications yet.",
+  "notificationLoadingList": "Loading notifications...",
+  "notificationLoadingDetails": "Loading notification details...",
+  "notificationRetryAction": "Retry",
+  "notificationNotFoundMessage": "This notification could not be found.",
+  "notificationItemTitle": "Camera {cameraId} alert",
+  "@notificationItemTitle": {
+    "placeholders": {
+      "cameraId": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationItemBody": "{eventType} detected at {timestamp}",
+  "@notificationItemBody": {
+    "placeholders": {
+      "eventType": {
+        "type": "String"
+      },
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationDetailTitle": "Notification #{eventId}",
+  "@notificationDetailTitle": {
+    "placeholders": {
+      "eventId": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationFieldEventId": "Event ID",
+  "notificationFieldCameraId": "Camera ID",
+  "notificationFieldEventType": "Event type",
+  "notificationFieldConfidence": "Confidence",
+  "notificationFieldTimestamp": "Timestamp",
   "signedInAs": "Signed in as {email}",
   "@signedInAs": {
     "placeholders": {

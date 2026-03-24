@@ -29,6 +29,80 @@
   "unknownErrorMessage": "Đã xảy ra lỗi. Vui lòng thử lại.",
   "homeTitle": "Chào mừng quay lại",
   "homeSubtitle": "Bạn đã đăng nhập và sẵn sàng gọi các API cần xác thực.",
+  "navHome": "Trang chủ",
+  "navMonitoring": "Giám sát",
+  "navAlerts": "Cảnh báo",
+  "navMenu": "Menu",
+  "dashboardHeartRateSummary": "Nhịp tim trung bình: {value} bpm",
+  "@dashboardHeartRateSummary": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardStepSummary": "Số bước chân: {value}",
+  "@dashboardStepSummary": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "monitoringTitle": "Giám sát camera",
+  "monitoringSubtitle": "Theo dõi nhanh các khu vực quan trọng trong nhà.",
+  "monitoringLivingRoomCamera": "Camera phòng khách",
+  "monitoringEntryCamera": "Camera cửa ra vào",
+  "monitoringLiveStatus": "TRỰC TIẾP",
+  "monitoringRecentMovement": "Phát hiện chuyển động 2 phút trước.",
+  "monitoringNoMovement": "Yên tĩnh trong 20 phút gần đây.",
+  "alertsTitle": "Cảnh báo chăm sóc",
+  "alertsSubtitle": "Nhắc nhở và cập nhật hoạt động gần đây.",
+  "alertsMedicationReminderTitle": "Nhắc uống thuốc",
+  "alertsMedicationReminderBody": "08:00 - Đã xác nhận uống thuốc buổi sáng.",
+  "alertsMovementUpdateTitle": "Cập nhật di chuyển",
+  "alertsMovementUpdateBody": "21:10 - Phát hiện đi lại ban đêm.",
+  "menuTitle": "Cài đặt và tài khoản",
+  "menuSubtitle": "Quản lý phiên đăng nhập và tuỳ chọn ứng dụng.",
+  "notificationCenterTitle": "Thông báo",
+  "notificationCenterSubtitle": "Các sự kiện mới nhất lấy từ API giám sát.",
+  "notificationEmptyMessage": "Chưa có thông báo nào.",
+  "notificationLoadingList": "Đang tải danh sách thông báo...",
+  "notificationLoadingDetails": "Đang tải chi tiết thông báo...",
+  "notificationRetryAction": "Thử lại",
+  "notificationNotFoundMessage": "Không tìm thấy thông báo này.",
+  "notificationItemTitle": "Cảnh báo camera {cameraId}",
+  "@notificationItemTitle": {
+    "placeholders": {
+      "cameraId": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationItemBody": "Phát hiện {eventType} lúc {timestamp}",
+  "@notificationItemBody": {
+    "placeholders": {
+      "eventType": {
+        "type": "String"
+      },
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationDetailTitle": "Thông báo #{eventId}",
+  "@notificationDetailTitle": {
+    "placeholders": {
+      "eventId": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationFieldEventId": "Mã sự kiện",
+  "notificationFieldCameraId": "Mã camera",
+  "notificationFieldEventType": "Loại sự kiện",
+  "notificationFieldConfidence": "Độ tin cậy",
+  "notificationFieldTimestamp": "Thời gian",
   "signedInAs": "Đăng nhập với {email}",
   "@signedInAs": {
     "placeholders": {
