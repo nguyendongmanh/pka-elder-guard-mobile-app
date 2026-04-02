@@ -166,10 +166,43 @@ class AppLocalizationsVi extends AppLocalizations {
   String get notificationCenterTitle => 'Thông báo';
 
   @override
-  String get notificationCenterSubtitle => 'Các sự kiện mới nhất lấy từ API giám sát.';
+  String get notificationCenterSubtitle => 'Các cảnh báo push đã nhận trên thiết bị này.';
 
   @override
   String get notificationEmptyMessage => 'Chưa có thông báo nào.';
+
+  @override
+  String get notificationStatusTitle => 'Trạng thái push';
+
+  @override
+  String get notificationRegistrationLabel => 'Đăng ký với backend';
+
+  @override
+  String get notificationSubscriptionLabel => 'Subscription ID';
+
+  @override
+  String get notificationUserLabel => 'User ID';
+
+  @override
+  String get notificationStatusWaitingForLogin => 'Đang chờ đăng nhập';
+
+  @override
+  String get notificationStatusWaitingForSubscription => 'Đang chờ subscription ID';
+
+  @override
+  String get notificationStatusRegistered => 'Đã đăng ký';
+
+  @override
+  String get notificationStatusFailed => 'Đăng ký thất bại';
+
+  @override
+  String get notificationPopupOpenAction => 'Mở';
+
+  @override
+  String get notificationSourceForeground => 'Foreground';
+
+  @override
+  String get notificationSourceOpened => 'Đã mở';
 
   @override
   String get notificationLoadingList => 'Đang tải danh sách thông báo...';

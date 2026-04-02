@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801471170454",
+    "project_id": "flash-62f06",
+    "storage_bucket": "flash-62f06.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801471170454:android:41f661152eb819c1e97fb7",
+        "android_client_info": {
+          "package_name": "com.example.elder_guard_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSHOt5nvfv0sjJnPR-C7gDypXfuW7uQCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

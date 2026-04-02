@@ -26,6 +26,16 @@ class ApiClient {
     );
   }
 
+  Future<http.Response> post({
+    required String path,
+    Map<String, String>? headers,
+  }) {
+    return _sendPost(
+      Uri.parse('${AppConfig.baseUrl}$path'),
+      headers: <String, String>{'Accept': 'application/json', ...?headers},
+    );
+  }
+
   Future<http.Response> postJson({
     required String path,
     required Map<String, dynamic> body,
@@ -37,6 +47,16 @@ class ApiClient {
         'Content-Type': 'application/json',
       },
       body: jsonEncode(body),
+    );
+  }
+
+  Future<http.Response> delete({
+    required String path,
+    Map<String, String>? headers,
+  }) {
+    return _sendDelete(
+      Uri.parse('${AppConfig.baseUrl}$path'),
+      headers: <String, String>{'Accept': 'application/json', ...?headers},
     );
   }
 
@@ -79,11 +99,28 @@ class ApiClient {
   Future<http.Response> _sendPost(
     Uri uri, {
     required Map<String, String> headers,
-    required String body,
+    String? body,
   }) async {
     try {
       return await _client
           .post(uri, headers: headers, body: body)
+          .timeout(const Duration(seconds: 12));
+    } on TimeoutException {
+      throw const ApiException(ApiExceptionType.network);
+    } on http.ClientException {
+      throw const ApiException(ApiExceptionType.network);
+    } on Object {
+      throw const ApiException(ApiExceptionType.network);
+    }
+  }
+
+  Future<http.Response> _sendDelete(
+    Uri uri, {
+    required Map<String, String> headers,
+  }) async {
+    try {
+      return await _client
+          .delete(uri, headers: headers)
           .timeout(const Duration(seconds: 12));
     } on TimeoutException {
       throw const ApiException(ApiExceptionType.network);

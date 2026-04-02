@@ -45,9 +45,14 @@ class RemoteAuthRepository implements AuthRepository {
     await _tokenStorage.saveSession(
       accessToken: response.accessToken,
       email: email,
+      userId: response.userId,
     );
 
-    return AuthSession(accessToken: response.accessToken, email: email);
+    return AuthSession(
+      accessToken: response.accessToken,
+      email: email,
+      userId: response.userId,
+    );
   }
 
   @override
@@ -78,6 +83,7 @@ class RemoteAuthRepository implements AuthRepository {
     return AuthSession(
       accessToken: token,
       email: await _tokenStorage.readUserEmail() ?? '',
+      userId: await _tokenStorage.readUserId(),
     );
   }
 }

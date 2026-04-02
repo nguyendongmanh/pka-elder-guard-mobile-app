@@ -166,10 +166,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationCenterTitle => 'Notifications';
 
   @override
-  String get notificationCenterSubtitle => 'Latest events fetched from the monitoring API.';
+  String get notificationCenterSubtitle => 'Push alerts received on this device.';
 
   @override
   String get notificationEmptyMessage => 'No notifications yet.';
+
+  @override
+  String get notificationStatusTitle => 'Push status';
+
+  @override
+  String get notificationRegistrationLabel => 'Backend registration';
+
+  @override
+  String get notificationSubscriptionLabel => 'Subscription ID';
+
+  @override
+  String get notificationUserLabel => 'User ID';
+
+  @override
+  String get notificationStatusWaitingForLogin => 'Waiting for login';
+
+  @override
+  String get notificationStatusWaitingForSubscription => 'Waiting for subscription ID';
+
+  @override
+  String get notificationStatusRegistered => 'Registered';
+
+  @override
+  String get notificationStatusFailed => 'Registration failed';
+
+  @override
+  String get notificationPopupOpenAction => 'Open';
+
+  @override
+  String get notificationSourceForeground => 'Foreground';
+
+  @override
+  String get notificationSourceOpened => 'Opened';
 
   @override
   String get notificationLoadingList => 'Loading notifications...';

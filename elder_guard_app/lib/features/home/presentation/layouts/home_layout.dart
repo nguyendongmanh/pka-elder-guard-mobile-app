@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:elder_guard_app/app/theme/app_colors.dart';
 import 'package:elder_guard_app/core/notifications/device_notification_service.dart';
+import 'package:elder_guard_app/core/notifications/one_signal_service.dart';
 import 'package:elder_guard_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:elder_guard_app/features/auth/presentation/widgets/auth_background.dart';
 import 'package:elder_guard_app/features/auth/presentation/widgets/language_switch_button.dart';
 import 'package:elder_guard_app/features/home/presentation/widgets/home_bottom_action_bar.dart';
-import 'package:elder_guard_app/features/notifications/presentation/controllers/event_notifications_controller.dart';
+import 'package:elder_guard_app/core/notifications/models/push_notification_record.dart';
+import 'package:elder_guard_app/features/notifications/presentation/controllers/notification_center_controller.dart';
 import 'package:elder_guard_app/features/notifications/presentation/screens/notifications_screen.dart';
+import 'package:elder_guard_app/features/notifications/presentation/widgets/notification_popup_card.dart';
 import 'package:elder_guard_app/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,10 +27,13 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
   static const Duration _labelVisibilityDuration = Duration(seconds: 2);
   static const int _notificationsTabIndex = 2;
   static const Duration _deferredBootstrapDelay = Duration(milliseconds: 350);
+  static const Duration _popupDuration = Duration(seconds: 4);
 
   int _currentIndex = 0;
   int? _visibleLabelIndex;
   Timer? _labelTimer;
+  Timer? _popupTimer;
+  OverlayEntry? _popupOverlayEntry;
   StreamSubscription<String>? _notificationTapSubscription;
 
   @override
@@ -41,12 +47,58 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
   @override
   void dispose() {
     _labelTimer?.cancel();
+    _popupTimer?.cancel();
+    _removePopupOverlay();
     _notificationTapSubscription?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<NotificationPopupRequest?>(
+      notificationCenterControllerProvider.select(
+        (state) => state.pendingPopup,
+      ),
+      (previous, next) {
+        if (next == null || previous?.sequence == next.sequence || !mounted) {
+          return;
+        }
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) {
+            return;
+          }
+
+          _showPopupOverlay(next.notification);
+
+          ref
+              .read(notificationCenterControllerProvider.notifier)
+              .consumePopup(next.sequence);
+        });
+      },
+    );
+    ref.listen<NotificationOpenRequest?>(
+      notificationCenterControllerProvider.select(
+        (state) => state.pendingOpenRequest,
+      ),
+      (previous, next) {
+        if (next == null || previous?.sequence == next.sequence || !mounted) {
+          return;
+        }
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) {
+            return;
+          }
+
+          _openNotificationsTab();
+          ref
+              .read(notificationCenterControllerProvider.notifier)
+              .consumeOpenRequest(next.sequence);
+        });
+      },
+    );
+
     final l10n = AppLocalizations.of(context)!;
     final isSubmitting = ref.watch(
       authControllerProvider.select((state) => state.isSubmitting),
@@ -186,22 +238,49 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     if (!mounted) {
       return;
     }
-
-    unawaited(ref.read(eventNotificationsControllerProvider.future));
   }
 
   Future<void> _initializeNotifications() async {
     final deviceNotificationService = ref.read(
       deviceNotificationServiceProvider,
     );
-    await deviceNotificationService.requestPermissions();
+    final oneSignalService = ref.read(oneSignalServiceProvider);
+    await deviceNotificationService.initialize();
+    await oneSignalService.initialize();
 
     _notificationTapSubscription = deviceNotificationService.tapPayloadStream
-        .listen((_) => _openNotificationsTab());
+        .listen((payload) {
+          debugPrint(
+            'Push pipeline: device notification tapped payload=$payload',
+          );
+          _openNotificationsTab();
+        });
 
     final pendingPayload = deviceNotificationService.takePendingPayload();
     if (pendingPayload != null && pendingPayload.isNotEmpty) {
+      debugPrint(
+        'Push pipeline: app launched from device notification payload=$pendingPayload',
+      );
       _openNotificationsTab();
+    }
+
+    final notificationCenterState = ref.read(
+      notificationCenterControllerProvider,
+    );
+    final pendingPopup = notificationCenterState.pendingPopup;
+    if (pendingPopup != null) {
+      _showPopupOverlay(pendingPopup.notification);
+      ref
+          .read(notificationCenterControllerProvider.notifier)
+          .consumePopup(pendingPopup.sequence);
+    }
+
+    final pendingOpenRequest = notificationCenterState.pendingOpenRequest;
+    if (pendingOpenRequest != null) {
+      _openNotificationsTab();
+      ref
+          .read(notificationCenterControllerProvider.notifier)
+          .consumeOpenRequest(pendingOpenRequest.sequence);
     }
   }
 
@@ -229,6 +308,47 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
       return;
     }
 
+    _removePopupOverlay();
     _handleTabTap(_notificationsTabIndex);
+  }
+
+  void _showPopupOverlay(PushNotificationRecord notification) {
+    _popupTimer?.cancel();
+    _removePopupOverlay();
+    debugPrint('Push pipeline: showing in-app popup id=${notification.id}');
+
+    final overlay = Overlay.of(context, rootOverlay: true);
+    final topPadding = MediaQuery.paddingOf(context).top;
+    _popupOverlayEntry = OverlayEntry(
+      builder:
+          (context) => SafeArea(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(14, topPadding + 12, 14, 0),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 430),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: NotificationPopupCard(
+                      notification: notification,
+                      onOpen: _openNotificationsTab,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+    );
+    overlay.insert(_popupOverlayEntry!);
+
+    _popupTimer = Timer(_popupDuration, _removePopupOverlay);
+  }
+
+  void _removePopupOverlay() {
+    _popupTimer?.cancel();
+    _popupTimer = null;
+    _popupOverlayEntry?.remove();
+    _popupOverlayEntry = null;
   }
 }

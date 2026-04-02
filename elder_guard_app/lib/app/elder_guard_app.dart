@@ -1,3 +1,4 @@
+import 'package:elder_guard_app/app/app_bootstrapper.dart';
 import 'package:elder_guard_app/app/root_screen.dart';
 import 'package:elder_guard_app/app/theme/app_theme.dart';
 import 'package:elder_guard_app/core/localization/locale_controller.dart';
@@ -12,14 +13,16 @@ class ElderGuardApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeControllerProvider);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      locale: locale,
-      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: AppTheme.lightTheme,
-      home: const RootScreen(),
+    return AppBootstrapper(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        locale: locale,
+        onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: AppTheme.lightTheme,
+        home: const RootScreen(),
+      ),
     );
   }
 }

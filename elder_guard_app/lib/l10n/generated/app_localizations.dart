@@ -404,7 +404,7 @@ abstract class AppLocalizations {
   /// No description provided for @notificationCenterSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Latest events fetched from the monitoring API.'**
+  /// **'Push alerts received on this device.'**
   String get notificationCenterSubtitle;
 
   /// No description provided for @notificationEmptyMessage.
@@ -412,6 +412,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No notifications yet.'**
   String get notificationEmptyMessage;
+
+  /// No description provided for @notificationStatusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Push status'**
+  String get notificationStatusTitle;
+
+  /// No description provided for @notificationRegistrationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Backend registration'**
+  String get notificationRegistrationLabel;
+
+  /// No description provided for @notificationSubscriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription ID'**
+  String get notificationSubscriptionLabel;
+
+  /// No description provided for @notificationUserLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'User ID'**
+  String get notificationUserLabel;
+
+  /// No description provided for @notificationStatusWaitingForLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for login'**
+  String get notificationStatusWaitingForLogin;
+
+  /// No description provided for @notificationStatusWaitingForSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for subscription ID'**
+  String get notificationStatusWaitingForSubscription;
+
+  /// No description provided for @notificationStatusRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered'**
+  String get notificationStatusRegistered;
+
+  /// No description provided for @notificationStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration failed'**
+  String get notificationStatusFailed;
+
+  /// No description provided for @notificationPopupOpenAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get notificationPopupOpenAction;
+
+  /// No description provided for @notificationSourceForeground.
+  ///
+  /// In en, this message translates to:
+  /// **'Foreground'**
+  String get notificationSourceForeground;
+
+  /// No description provided for @notificationSourceOpened.
+  ///
+  /// In en, this message translates to:
+  /// **'Opened'**
+  String get notificationSourceOpened;
 
   /// No description provided for @notificationLoadingList.
   ///

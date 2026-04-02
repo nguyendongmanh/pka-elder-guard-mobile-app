@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,11 +15,16 @@ class DeviceNotificationService {
     : _plugin = FlutterLocalNotificationsPlugin(),
       _tapPayloadController = StreamController<String>.broadcast();
 
+  static const String _pushChannelId = 'elder_guard_push_alerts_v2';
+  static const String _pushChannelName = 'ElderGuard Push Alerts';
+  static const String _pushChannelDescription =
+      'Heads-up notifications for important ElderGuard alerts.';
+
   static const AndroidNotificationChannel _eventsChannel =
       AndroidNotificationChannel(
-        'elder_guard_events',
-        'ElderGuard Events',
-        description: 'Notifications for new monitoring events.',
+        _pushChannelId,
+        _pushChannelName,
+        description: _pushChannelDescription,
         importance: Importance.max,
       );
 
@@ -82,12 +88,16 @@ class DeviceNotificationService {
 
     const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
-        'elder_guard_events',
-        'ElderGuard Events',
-        channelDescription: 'Notifications for new monitoring events.',
+        _pushChannelId,
+        _pushChannelName,
+        channelDescription: _pushChannelDescription,
         icon: 'ic_notification',
         importance: Importance.max,
         priority: Priority.high,
+        playSound: true,
+        enableVibration: true,
+        visibility: NotificationVisibility.public,
+        category: AndroidNotificationCategory.alarm,
       ),
       iOS: DarwinNotificationDetails(),
     );
@@ -98,6 +108,44 @@ class DeviceNotificationService {
       body,
       notificationDetails,
       payload: eventId.toString(),
+    );
+  }
+
+  Future<void> showPushNotification({
+    required String notificationId,
+    required String title,
+    required String body,
+  }) async {
+    await initialize();
+    debugPrint(
+      'Push pipeline: scheduling device notification id=$notificationId, title=$title',
+    );
+
+    const notificationDetails = NotificationDetails(
+      android: AndroidNotificationDetails(
+        _pushChannelId,
+        _pushChannelName,
+        channelDescription: _pushChannelDescription,
+        icon: 'ic_notification',
+        importance: Importance.max,
+        priority: Priority.high,
+        playSound: true,
+        enableVibration: true,
+        visibility: NotificationVisibility.public,
+        category: AndroidNotificationCategory.message,
+      ),
+      iOS: DarwinNotificationDetails(),
+    );
+
+    await _plugin.show(
+      _notificationIdFromString(notificationId),
+      title,
+      body,
+      notificationDetails,
+      payload: notificationId,
+    );
+    debugPrint(
+      'Push pipeline: device notification displayed id=$notificationId',
     );
   }
 
@@ -119,5 +167,14 @@ class DeviceNotificationService {
     }
 
     _pendingPayload = payload;
+  }
+
+  int _notificationIdFromString(String value) {
+    var hash = 17;
+    for (final codeUnit in value.codeUnits) {
+      hash = 37 * hash + codeUnit;
+    }
+
+    return hash & 0x7fffffff;
   }
 }
