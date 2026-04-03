@@ -3,10 +3,13 @@ import 'dart:async';
 import 'package:elder_guard_app/app/theme/app_colors.dart';
 import 'package:elder_guard_app/core/notifications/device_notification_service.dart';
 import 'package:elder_guard_app/core/notifications/one_signal_service.dart';
+import 'package:elder_guard_app/features/auth/data/models/auth_session.dart';
 import 'package:elder_guard_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:elder_guard_app/features/auth/presentation/widgets/auth_background.dart';
 import 'package:elder_guard_app/features/auth/presentation/widgets/language_switch_button.dart';
 import 'package:elder_guard_app/features/home/presentation/widgets/home_bottom_action_bar.dart';
+import 'package:elder_guard_app/features/home/presentation/widgets/home_welcome_card.dart';
+import 'package:elder_guard_app/features/menu/presentation/screens/menu_screen.dart';
 import 'package:elder_guard_app/core/notifications/models/push_notification_record.dart';
 import 'package:elder_guard_app/features/notifications/presentation/controllers/notification_center_controller.dart';
 import 'package:elder_guard_app/features/notifications/presentation/screens/notifications_screen.dart';
@@ -55,6 +58,9 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    final unreadNotificationCount = ref.watch(
+      notificationCenterControllerProvider.select((state) => state.unreadCount),
+    );
     ref.listen<NotificationPopupRequest?>(
       notificationCenterControllerProvider.select(
         (state) => state.pendingPopup,
@@ -91,7 +97,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
             return;
           }
 
-          _openNotificationsTab();
+          _openNotificationsTab(readNotificationId: next.notificationId);
           ref
               .read(notificationCenterControllerProvider.notifier)
               .consumeOpenRequest(next.sequence);
@@ -100,6 +106,9 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     );
 
     final l10n = AppLocalizations.of(context)!;
+    final session = ref.watch(
+      authControllerProvider.select((state) => state.session),
+    );
     final isSubmitting = ref.watch(
       authControllerProvider.select((state) => state.isSubmitting),
     );
@@ -118,6 +127,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
         label: l10n.navAlerts,
         icon: Icons.notifications_none_rounded,
         selectedIcon: Icons.notifications_rounded,
+        badgeCount: unreadNotificationCount,
       ),
       HomeBottomBarItemData(
         label: l10n.navMenu,
@@ -179,6 +189,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
                         child: KeyedSubtree(
                           key: ValueKey(_currentIndex),
                           child: _buildTabContent(
+                            session: session,
                             isSubmitting: isSubmitting,
                             l10n: l10n,
                           ),
@@ -202,6 +213,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
   }
 
   Widget _buildTabContent({
+    required AuthSession? session,
     required bool isSubmitting,
     required AppLocalizations l10n,
   }) {
@@ -210,18 +222,13 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     }
 
     if (_currentIndex == 0) {
-      return Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 240),
-          child: FilledButton.icon(
-            onPressed:
-                isSubmitting
-                    ? null
-                    : () => ref.read(authControllerProvider.notifier).logout(),
-            icon: const Icon(Icons.logout_rounded),
-            label: Text(l10n.logoutAction),
-          ),
-        ),
+      return HomeWelcomeCard(session: session);
+    }
+
+    if (_currentIndex == 3) {
+      return MenuScreen(
+        isLoggingOut: isSubmitting,
+        onLogout: () => ref.read(authControllerProvider.notifier).logout(),
       );
     }
 
@@ -253,7 +260,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
           debugPrint(
             'Push pipeline: device notification tapped payload=$payload',
           );
-          _openNotificationsTab();
+          _openNotificationsTab(readNotificationId: payload);
         });
 
     final pendingPayload = deviceNotificationService.takePendingPayload();
@@ -261,7 +268,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
       debugPrint(
         'Push pipeline: app launched from device notification payload=$pendingPayload',
       );
-      _openNotificationsTab();
+      _openNotificationsTab(readNotificationId: pendingPayload);
     }
 
     final notificationCenterState = ref.read(
@@ -277,7 +284,9 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
 
     final pendingOpenRequest = notificationCenterState.pendingOpenRequest;
     if (pendingOpenRequest != null) {
-      _openNotificationsTab();
+      _openNotificationsTab(
+        readNotificationId: pendingOpenRequest.notificationId,
+      );
       ref
           .read(notificationCenterControllerProvider.notifier)
           .consumeOpenRequest(pendingOpenRequest.sequence);
@@ -303,9 +312,15 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     });
   }
 
-  void _openNotificationsTab() {
+  void _openNotificationsTab({String? readNotificationId}) {
     if (!mounted) {
       return;
+    }
+
+    if (readNotificationId != null && readNotificationId.isNotEmpty) {
+      ref
+          .read(notificationCenterControllerProvider.notifier)
+          .markAsRead(readNotificationId);
     }
 
     _removePopupOverlay();
@@ -332,7 +347,10 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
                     color: Colors.transparent,
                     child: NotificationPopupCard(
                       notification: notification,
-                      onOpen: _openNotificationsTab,
+                      onOpen:
+                          () => _openNotificationsTab(
+                            readNotificationId: notification.id,
+                          ),
                     ),
                   ),
                 ),

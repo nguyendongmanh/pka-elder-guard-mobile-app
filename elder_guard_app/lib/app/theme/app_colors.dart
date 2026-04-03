@@ -5,6 +5,7 @@ abstract final class AppColors {
   static const Color tealPrimary = Color(0xFF146E6A);
   static const Color tealSecondary = Color(0xFF2F8A83);
   static const Color tealMist = Color(0xFF78AAA3);
+  static const Color notificationBlue = Color(0xFF2F80ED);
   static const Color cream = Color(0xFFF5EFDF);
   static const Color creamLight = Color(0xFFF8F3E6);
   static const Color creamDeep = Color(0xFFEFE5CF);

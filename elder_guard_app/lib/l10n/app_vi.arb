@@ -62,8 +62,19 @@
   "alertsMedicationReminderBody": "08:00 - Đã xác nhận uống thuốc buổi sáng.",
   "alertsMovementUpdateTitle": "Cập nhật di chuyển",
   "alertsMovementUpdateBody": "21:10 - Phát hiện đi lại ban đêm.",
-  "menuTitle": "Cài đặt và tài khoản",
-  "menuSubtitle": "Quản lý phiên đăng nhập và tuỳ chọn ứng dụng.",
+  "menuTitle": "Menu",
+  "menuPersonalInfoTitle": "Thông tin cá nhân",
+  "menuHealthProfileTitle": "Hồ sơ sức khỏe",
+  "menuSettingsPrivacyTitle": "Cài đặt và quyền riêng tư",
+  "menuAboutTitle": "Giới thiệu",
+  "menuComingSoonMessage": "{section} sẽ sớm được cập nhật.",
+  "@menuComingSoonMessage": {
+    "placeholders": {
+      "section": {
+        "type": "String"
+      }
+    }
+  },
   "notificationCenterTitle": "Thông báo",
   "notificationCenterSubtitle": "Các cảnh báo push đã nhận trên thiết bị này.",
   "notificationEmptyMessage": "Chưa có thông báo nào.",

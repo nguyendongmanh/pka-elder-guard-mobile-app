@@ -386,14 +386,38 @@ abstract class AppLocalizations {
   /// No description provided for @menuTitle.
   ///
   /// In en, this message translates to:
-  /// **'Settings and account'**
+  /// **'Menu'**
   String get menuTitle;
 
-  /// No description provided for @menuSubtitle.
+  /// No description provided for @menuPersonalInfoTitle.
   ///
   /// In en, this message translates to:
-  /// **'Manage session details and app preferences.'**
-  String get menuSubtitle;
+  /// **'Personal information'**
+  String get menuPersonalInfoTitle;
+
+  /// No description provided for @menuHealthProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health profile'**
+  String get menuHealthProfileTitle;
+
+  /// No description provided for @menuSettingsPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings and privacy'**
+  String get menuSettingsPrivacyTitle;
+
+  /// No description provided for @menuAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get menuAboutTitle;
+
+  /// No description provided for @menuComingSoonMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{section} will be available soon.'**
+  String menuComingSoonMessage(String section);
 
   /// No description provided for @notificationCenterTitle.
   ///

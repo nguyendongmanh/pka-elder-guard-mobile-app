@@ -65,8 +65,19 @@
   "alertsMedicationReminderBody": "08:00 - Morning medication confirmed.",
   "alertsMovementUpdateTitle": "Movement update",
   "alertsMovementUpdateBody": "21:10 - Night walk detected.",
-  "menuTitle": "Settings and account",
-  "menuSubtitle": "Manage session details and app preferences.",
+  "menuTitle": "Menu",
+  "menuPersonalInfoTitle": "Personal information",
+  "menuHealthProfileTitle": "Health profile",
+  "menuSettingsPrivacyTitle": "Settings and privacy",
+  "menuAboutTitle": "About",
+  "menuComingSoonMessage": "{section} will be available soon.",
+  "@menuComingSoonMessage": {
+    "placeholders": {
+      "section": {
+        "type": "String"
+      }
+    }
+  },
   "notificationCenterTitle": "Notifications",
   "notificationCenterSubtitle": "Push alerts received on this device.",
   "notificationEmptyMessage": "No notifications yet.",

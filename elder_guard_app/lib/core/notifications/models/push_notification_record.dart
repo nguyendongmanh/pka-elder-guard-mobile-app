@@ -9,6 +9,7 @@ class PushNotificationRecord {
     required this.source,
     required this.additionalData,
     required this.opened,
+    required this.isRead,
   });
 
   final String id;
@@ -18,6 +19,7 @@ class PushNotificationRecord {
   final PushNotificationSource source;
   final Map<String, dynamic> additionalData;
   final bool opened;
+  final bool isRead;
 
   factory PushNotificationRecord.fromJson(Map<String, dynamic> json) {
     final sourceName = json['source'] as String?;
@@ -42,6 +44,7 @@ class PushNotificationRecord {
       source: source,
       additionalData: normalizedAdditionalData,
       opened: json['opened'] as bool? ?? false,
+      isRead: json['isRead'] as bool? ?? (json['opened'] as bool? ?? false),
     );
   }
 
@@ -52,6 +55,7 @@ class PushNotificationRecord {
     PushNotificationSource? source,
     Map<String, dynamic>? additionalData,
     bool? opened,
+    bool? isRead,
   }) {
     return PushNotificationRecord(
       id: id,
@@ -61,6 +65,7 @@ class PushNotificationRecord {
       source: source ?? this.source,
       additionalData: additionalData ?? this.additionalData,
       opened: opened ?? this.opened,
+      isRead: isRead ?? this.isRead,
     );
   }
 
@@ -73,6 +78,7 @@ class PushNotificationRecord {
       'source': source.name,
       'additionalData': additionalData,
       'opened': opened,
+      'isRead': isRead,
     };
   }
 }

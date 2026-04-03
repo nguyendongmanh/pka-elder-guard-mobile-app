@@ -157,10 +157,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alertsMovementUpdateBody => '21:10 - Night walk detected.';
 
   @override
-  String get menuTitle => 'Settings and account';
+  String get menuTitle => 'Menu';
 
   @override
-  String get menuSubtitle => 'Manage session details and app preferences.';
+  String get menuPersonalInfoTitle => 'Personal information';
+
+  @override
+  String get menuHealthProfileTitle => 'Health profile';
+
+  @override
+  String get menuSettingsPrivacyTitle => 'Settings and privacy';
+
+  @override
+  String get menuAboutTitle => 'About';
+
+  @override
+  String menuComingSoonMessage(String section) {
+    return '$section will be available soon.';
+  }
 
   @override
   String get notificationCenterTitle => 'Notifications';

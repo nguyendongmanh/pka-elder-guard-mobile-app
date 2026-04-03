@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class PushNotificationTile extends StatelessWidget {
-  const PushNotificationTile({required this.notification, super.key});
+  const PushNotificationTile({
+    required this.notification,
+    this.onTap,
+    super.key,
+  });
 
   final PushNotificationRecord notification;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -17,57 +22,83 @@ class PushNotificationTile extends StatelessWidget {
       localeName,
     ).add_Hm().format(notification.receivedAt.toLocal());
 
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.84),
+    final isUnread = !notification.isRead;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: AppColors.tealPrimary.withValues(alpha: 0.14),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+        onTap: onTap,
+        child: Ink(
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            color:
+                isUnread
+                    ? Colors.white.withValues(alpha: 0.94)
+                    : Colors.white.withValues(alpha: 0.84),
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(
+              color:
+                  isUnread
+                      ? AppColors.notificationBlue.withValues(alpha: 0.28)
+                      : AppColors.tealPrimary.withValues(alpha: 0.14),
+            ),
+          ),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Text(
-                  notification.title,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: AppColors.deepTeal,
-                    fontWeight: FontWeight.w800,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (isUnread) ...[
+                    Container(
+                      width: 10,
+                      height: 10,
+                      margin: const EdgeInsets.only(top: 6, right: 10),
+                      decoration: const BoxDecoration(
+                        color: AppColors.notificationBlue,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ],
+                  Expanded(
+                    child: Text(
+                      notification.title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.deepTeal,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
                   ),
+                  const SizedBox(width: 12),
+                  _SourceChip(
+                    label:
+                        notification.source == PushNotificationSource.foreground
+                            ? l10n.notificationSourceForeground
+                            : l10n.notificationSourceOpened,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                notification.body,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppColors.textDark.withValues(alpha: 0.82),
+                  fontWeight: FontWeight.w700,
+                  height: 1.35,
                 ),
               ),
-              const SizedBox(width: 12),
-              _SourceChip(
-                label:
-                    notification.source == PushNotificationSource.foreground
-                        ? l10n.notificationSourceForeground
-                        : l10n.notificationSourceOpened,
+              const SizedBox(height: 12),
+              Text(
+                timestamp,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.textDark.withValues(alpha: 0.64),
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            notification.body,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: AppColors.textDark.withValues(alpha: 0.82),
-              fontWeight: FontWeight.w700,
-              height: 1.35,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            timestamp,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textDark.withValues(alpha: 0.64),
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

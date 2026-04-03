@@ -201,6 +201,7 @@ class OneSignalService {
               ? const <String, dynamic>{}
               : Map<String, dynamic>.from(notification.additionalData!),
       opened: opened,
+      isRead: opened,
     );
   }
 

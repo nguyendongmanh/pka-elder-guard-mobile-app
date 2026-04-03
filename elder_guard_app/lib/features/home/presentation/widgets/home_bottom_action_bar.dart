@@ -47,11 +47,13 @@ class HomeBottomBarItemData {
     required this.label,
     required this.icon,
     required this.selectedIcon,
+    this.badgeCount = 0,
   });
 
   final String label;
   final IconData icon;
   final IconData selectedIcon;
+  final int badgeCount;
 }
 
 class _BottomActionItem extends StatelessWidget {
@@ -80,10 +82,28 @@ class _BottomActionItem extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isSelected ? data.selectedIcon : data.icon,
-              size: 31,
-              color: foregroundColor,
+            SizedBox(
+              height: 34,
+              width: 34,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: Icon(
+                      isSelected ? data.selectedIcon : data.icon,
+                      size: 31,
+                      color: foregroundColor,
+                    ),
+                  ),
+                  if (data.badgeCount > 0)
+                    Positioned(
+                      top: -2,
+                      right: -8,
+                      child: _Badge(count: data.badgeCount),
+                    ),
+                ],
+              ),
             ),
             const SizedBox(height: 4),
             SizedBox(
@@ -109,6 +129,36 @@ class _BottomActionItem extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Badge extends StatelessWidget {
+  const _Badge({required this.count});
+
+  final int count;
+
+  @override
+  Widget build(BuildContext context) {
+    final label = count > 99 ? '99+' : '$count';
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
+      decoration: BoxDecoration(
+        color: AppColors.notificationBlue,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: Colors.white, width: 2),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        label,
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w800,
+          height: 1,
         ),
       ),
     );

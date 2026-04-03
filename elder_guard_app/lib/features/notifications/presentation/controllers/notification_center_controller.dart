@@ -46,6 +46,9 @@ class NotificationCenterState {
   final String? subscriptionId;
   final NotificationPopupRequest? pendingPopup;
   final NotificationOpenRequest? pendingOpenRequest;
+
+  int get unreadCount =>
+      notifications.where((notification) => !notification.isRead).length;
 }
 
 class NotificationCenterController extends Notifier<NotificationCenterState> {
@@ -126,6 +129,39 @@ class NotificationCenterController extends Notifier<NotificationCenterState> {
     );
   }
 
+  Future<void> refreshInbox() async {
+    final reloadedNotifications = _loadNotifications();
+    state = NotificationCenterState(
+      notifications: reloadedNotifications,
+      subscriptionId: state.subscriptionId,
+      pendingPopup: state.pendingPopup,
+      pendingOpenRequest: state.pendingOpenRequest,
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 250));
+  }
+
+  void markAsRead(String notificationId) {
+    final notifications = List<PushNotificationRecord>.from(
+      state.notifications,
+    );
+    final notificationIndex = notifications.indexWhere(
+      (notification) => notification.id == notificationId,
+    );
+    if (notificationIndex < 0 || notifications[notificationIndex].isRead) {
+      return;
+    }
+
+    notifications[notificationIndex] = notifications[notificationIndex]
+        .copyWith(isRead: true);
+    _persistNotifications(notifications);
+    state = NotificationCenterState(
+      notifications: notifications,
+      subscriptionId: state.subscriptionId,
+      pendingPopup: state.pendingPopup,
+      pendingOpenRequest: state.pendingOpenRequest,
+    );
+  }
+
   void _handleSubscriptionIdChanged(String? subscriptionId) {
     state = NotificationCenterState(
       notifications: state.notifications,
@@ -193,6 +229,7 @@ class NotificationCenterController extends Notifier<NotificationCenterState> {
             ...notification.additionalData,
           },
           opened: existingNotification.opened || notification.opened,
+          isRead: existingNotification.isRead || notification.isRead,
         ),
       );
     } else {

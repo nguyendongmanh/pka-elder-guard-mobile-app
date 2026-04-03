@@ -157,10 +157,24 @@ class AppLocalizationsVi extends AppLocalizations {
   String get alertsMovementUpdateBody => '21:10 - Phát hiện đi lại ban đêm.';
 
   @override
-  String get menuTitle => 'Cài đặt và tài khoản';
+  String get menuTitle => 'Menu';
 
   @override
-  String get menuSubtitle => 'Quản lý phiên đăng nhập và tuỳ chọn ứng dụng.';
+  String get menuPersonalInfoTitle => 'Thông tin cá nhân';
+
+  @override
+  String get menuHealthProfileTitle => 'Hồ sơ sức khỏe';
+
+  @override
+  String get menuSettingsPrivacyTitle => 'Cài đặt và quyền riêng tư';
+
+  @override
+  String get menuAboutTitle => 'Giới thiệu';
+
+  @override
+  String menuComingSoonMessage(String section) {
+    return '$section sẽ sớm được cập nhật.';
+  }
 
   @override
   String get notificationCenterTitle => 'Thông báo';
