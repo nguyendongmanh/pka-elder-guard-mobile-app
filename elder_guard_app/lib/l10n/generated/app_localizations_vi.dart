@@ -81,7 +81,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get validationErrorMessage => 'Vui lòng kiểm tra lại thông tin đã nhập.';
 
   @override
-  String get networkErrorMessage => 'Không thể kết nối tới máy chủ. Hãy kiểm tra API localhost.';
+  String get networkErrorMessage => 'Không thể kết nối tới máy chủ. Hãy kiểm tra cấu hình API.';
 
   @override
   String get serverErrorMessage => 'Máy chủ trả về phản hồi không hợp lệ.';
@@ -122,6 +122,50 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get monitoringSubtitle => 'Theo dõi nhanh các khu vực quan trọng trong nhà.';
+
+  @override
+  String get monitoringAddCameraAction => 'Thêm camera';
+
+  @override
+  String get monitoringAddCameraTitle => 'Thêm camera demo';
+
+  @override
+  String get monitoringEditCameraTitle => 'Đổi tên camera';
+
+  @override
+  String get monitoringCameraNameLabel => 'Tên camera';
+
+  @override
+  String get monitoringCameraNameHint => 'Nhập tên camera';
+
+  @override
+  String get monitoringCancelAction => 'Hủy';
+
+  @override
+  String get monitoringSaveAction => 'Lưu';
+
+  @override
+  String get monitoringRenameAction => 'Sửa tên';
+
+  @override
+  String get monitoringDeleteAction => 'Xóa camera';
+
+  @override
+  String get monitoringDemoBadge => 'DEMO';
+
+  @override
+  String get monitoringTapToView => 'Widget camera demo, không phát video.';
+
+  @override
+  String monitoringDemoTapMessage(String cameraName) {
+    return '$cameraName hiện chỉ là widget demo.';
+  }
+
+  @override
+  String get monitoringEmptyTitle => 'Chưa có camera demo nào';
+
+  @override
+  String get monitoringEmptyDescription => 'Hãy thêm camera để thử giao diện giám sát dạng demo.';
 
   @override
   String get monitoringLivingRoomCamera => 'Camera phòng khách';
@@ -175,6 +219,127 @@ class AppLocalizationsVi extends AppLocalizations {
   String menuComingSoonMessage(String section) {
     return '$section sẽ sớm được cập nhật.';
   }
+
+  @override
+  String get healthProfileDemoDescription => 'Dữ liệu dưới đây là hồ sơ sức khỏe mô phỏng để demo giao diện theo dõi người cao tuổi.';
+
+  @override
+  String get healthProfileDemoBadge => 'DỮ LIỆU DEMO';
+
+  @override
+  String get healthProfileDemoName => 'Nguyễn Thị Lan';
+
+  @override
+  String get healthProfileAgeLabel => 'Tuổi';
+
+  @override
+  String healthProfileAgeValue(String label, int age) {
+    return '$label: $age';
+  }
+
+  @override
+  String healthProfileFieldValue(String label, String value) {
+    return '$label: $value';
+  }
+
+  @override
+  String get healthProfileBloodTypeLabel => 'Nhóm máu';
+
+  @override
+  String get healthProfileCareLevelLabel => 'Mức chăm sóc';
+
+  @override
+  String get healthProfileCareLevelValue => 'Theo dõi hằng ngày';
+
+  @override
+  String get healthProfileVitalsSection => 'Chỉ số sinh tồn';
+
+  @override
+  String get healthProfileHeartRateLabel => 'Nhịp tim nghỉ';
+
+  @override
+  String healthProfileHeartRateValue(int value) {
+    return '$value bpm';
+  }
+
+  @override
+  String get healthProfileBloodPressureLabel => 'Huyết áp';
+
+  @override
+  String get healthProfileSpo2Label => 'SpO2';
+
+  @override
+  String healthProfileSpo2Value(int value) {
+    return '$value%';
+  }
+
+  @override
+  String get healthProfileWeightLabel => 'Cân nặng';
+
+  @override
+  String healthProfileWeightValue(int value) {
+    return '$value kg';
+  }
+
+  @override
+  String get healthProfileConditionsSection => 'Bệnh nền và ghi chú';
+
+  @override
+  String get healthProfileConditionHypertension => 'Tăng huyết áp';
+
+  @override
+  String get healthProfileConditionArthritis => 'Thoái hóa khớp';
+
+  @override
+  String get healthProfileConditionMemory => 'Suy giảm trí nhớ nhẹ';
+
+  @override
+  String get healthProfileAllergyLabel => 'Dị ứng';
+
+  @override
+  String get healthProfileAllergyValue => 'Chưa ghi nhận dị ứng thuốc';
+
+  @override
+  String get healthProfileLastCheckupLabel => 'Lần khám gần nhất';
+
+  @override
+  String get healthProfileLastCheckupValue => '26/03/2026';
+
+  @override
+  String get healthProfileMedicationSection => 'Lịch dùng thuốc';
+
+  @override
+  String get healthProfileMedicationMorningLabel => 'Buổi sáng';
+
+  @override
+  String get healthProfileMedicationMorningValue => 'Amlodipine 5mg sau bữa sáng';
+
+  @override
+  String get healthProfileMedicationEveningLabel => 'Buổi tối';
+
+  @override
+  String get healthProfileMedicationEveningValue => 'Canxi D3 trước khi ngủ';
+
+  @override
+  String get healthProfileEmergencySection => 'Liên hệ khẩn cấp';
+
+  @override
+  String get healthProfileEmergencyContactLabel => 'Người liên hệ';
+
+  @override
+  String get healthProfileEmergencyContactValue => 'Nguyễn Minh Tuấn (con trai)';
+
+  @override
+  String get healthProfileEmergencyPhoneLabel => 'Số điện thoại';
+
+  @override
+  String get healthProfileEmergencyPhoneValue => '0903 456 789';
+
+  @override
+  String get healthProfileAddressLabel => 'Địa chỉ';
+
+  @override
+  String get healthProfileAddressValue => '145 Lê Lợi, Quận 1, TP.HCM';
 
   @override
   String get notificationCenterTitle => 'Thông báo';

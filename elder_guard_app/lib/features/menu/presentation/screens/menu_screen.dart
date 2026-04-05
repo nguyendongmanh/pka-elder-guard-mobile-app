@@ -1,4 +1,5 @@
 import 'package:elder_guard_app/app/theme/app_colors.dart';
+import 'package:elder_guard_app/features/health_profile/presentation/screens/health_profile_screen.dart';
 import 'package:elder_guard_app/features/menu/presentation/models/menu_action_item.dart';
 import 'package:elder_guard_app/features/menu/presentation/widgets/menu_action_tile.dart';
 import 'package:elder_guard_app/l10n/generated/app_localizations.dart';
@@ -79,6 +80,15 @@ class MenuScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     if (item.kind == MenuActionKind.logout) {
       onLogout();
+      return;
+    }
+
+    if (item.kind == MenuActionKind.healthProfile) {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (context) => const HealthProfileScreen(),
+        ),
+      );
       return;
     }
 

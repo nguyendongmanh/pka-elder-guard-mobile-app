@@ -24,7 +24,7 @@
   "userNotFoundError": "Không tìm thấy tài khoản với email này.",
   "incorrectPasswordError": "Mật khẩu không chính xác.",
   "validationErrorMessage": "Vui lòng kiểm tra lại thông tin đã nhập.",
-  "networkErrorMessage": "Không thể kết nối tới máy chủ. Hãy kiểm tra API localhost.",
+  "networkErrorMessage": "Không thể kết nối tới máy chủ. Hãy kiểm tra cấu hình API.",
   "serverErrorMessage": "Máy chủ trả về phản hồi không hợp lệ.",
   "unknownErrorMessage": "Đã xảy ra lỗi. Vui lòng thử lại.",
   "homeTitle": "Chào mừng quay lại",
@@ -51,6 +51,27 @@
   },
   "monitoringTitle": "Giám sát camera",
   "monitoringSubtitle": "Theo dõi nhanh các khu vực quan trọng trong nhà.",
+  "monitoringAddCameraAction": "Thêm camera",
+  "monitoringAddCameraTitle": "Thêm camera demo",
+  "monitoringEditCameraTitle": "Đổi tên camera",
+  "monitoringCameraNameLabel": "Tên camera",
+  "monitoringCameraNameHint": "Nhập tên camera",
+  "monitoringCancelAction": "Hủy",
+  "monitoringSaveAction": "Lưu",
+  "monitoringRenameAction": "Sửa tên",
+  "monitoringDeleteAction": "Xóa camera",
+  "monitoringDemoBadge": "DEMO",
+  "monitoringTapToView": "Widget camera demo, không phát video.",
+  "monitoringDemoTapMessage": "{cameraName} hiện chỉ là widget demo.",
+  "@monitoringDemoTapMessage": {
+    "placeholders": {
+      "cameraName": {
+        "type": "String"
+      }
+    }
+  },
+  "monitoringEmptyTitle": "Chưa có camera demo nào",
+  "monitoringEmptyDescription": "Hãy thêm camera để thử giao diện giám sát dạng demo.",
   "monitoringLivingRoomCamera": "Camera phòng khách",
   "monitoringEntryCamera": "Camera cửa ra vào",
   "monitoringLiveStatus": "TRỰC TIẾP",
@@ -75,6 +96,84 @@
       }
     }
   },
+  "healthProfileDemoDescription": "Dữ liệu dưới đây là hồ sơ sức khỏe mô phỏng để demo giao diện theo dõi người cao tuổi.",
+  "healthProfileDemoBadge": "DỮ LIỆU DEMO",
+  "healthProfileDemoName": "Nguyễn Thị Lan",
+  "healthProfileAgeLabel": "Tuổi",
+  "healthProfileAgeValue": "{label}: {age}",
+  "@healthProfileAgeValue": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileFieldValue": "{label}: {value}",
+  "@healthProfileFieldValue": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "healthProfileBloodTypeLabel": "Nhóm máu",
+  "healthProfileCareLevelLabel": "Mức chăm sóc",
+  "healthProfileCareLevelValue": "Theo dõi hằng ngày",
+  "healthProfileVitalsSection": "Chỉ số sinh tồn",
+  "healthProfileHeartRateLabel": "Nhịp tim nghỉ",
+  "healthProfileHeartRateValue": "{value} bpm",
+  "@healthProfileHeartRateValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileBloodPressureLabel": "Huyết áp",
+  "healthProfileSpo2Label": "SpO2",
+  "healthProfileSpo2Value": "{value}%",
+  "@healthProfileSpo2Value": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileWeightLabel": "Cân nặng",
+  "healthProfileWeightValue": "{value} kg",
+  "@healthProfileWeightValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileConditionsSection": "Bệnh nền và ghi chú",
+  "healthProfileConditionHypertension": "Tăng huyết áp",
+  "healthProfileConditionArthritis": "Thoái hóa khớp",
+  "healthProfileConditionMemory": "Suy giảm trí nhớ nhẹ",
+  "healthProfileAllergyLabel": "Dị ứng",
+  "healthProfileAllergyValue": "Chưa ghi nhận dị ứng thuốc",
+  "healthProfileLastCheckupLabel": "Lần khám gần nhất",
+  "healthProfileLastCheckupValue": "26/03/2026",
+  "healthProfileMedicationSection": "Lịch dùng thuốc",
+  "healthProfileMedicationMorningLabel": "Buổi sáng",
+  "healthProfileMedicationMorningValue": "Amlodipine 5mg sau bữa sáng",
+  "healthProfileMedicationEveningLabel": "Buổi tối",
+  "healthProfileMedicationEveningValue": "Canxi D3 trước khi ngủ",
+  "healthProfileEmergencySection": "Liên hệ khẩn cấp",
+  "healthProfileEmergencyContactLabel": "Người liên hệ",
+  "healthProfileEmergencyContactValue": "Nguyễn Minh Tuấn (con trai)",
+  "healthProfileEmergencyPhoneLabel": "Số điện thoại",
+  "healthProfileEmergencyPhoneValue": "0903 456 789",
+  "healthProfileAddressLabel": "Địa chỉ",
+  "healthProfileAddressValue": "145 Lê Lợi, Quận 1, TP.HCM",
   "notificationCenterTitle": "Thông báo",
   "notificationCenterSubtitle": "Các cảnh báo push đã nhận trên thiết bị này.",
   "notificationEmptyMessage": "Chưa có thông báo nào.",

@@ -27,7 +27,7 @@
   "userNotFoundError": "No account was found for this email.",
   "incorrectPasswordError": "The password is incorrect.",
   "validationErrorMessage": "Please check the information you entered.",
-  "networkErrorMessage": "Unable to connect to the server. Please check your localhost API.",
+  "networkErrorMessage": "Unable to connect to the server. Please check your API configuration.",
   "serverErrorMessage": "The server returned an unexpected response.",
   "unknownErrorMessage": "Something went wrong. Please try again.",
   "homeTitle": "Welcome back",
@@ -54,6 +54,27 @@
   },
   "monitoringTitle": "Camera monitoring",
   "monitoringSubtitle": "Keep track of the most important areas in the home.",
+  "monitoringAddCameraAction": "Add camera",
+  "monitoringAddCameraTitle": "Add demo camera",
+  "monitoringEditCameraTitle": "Rename camera",
+  "monitoringCameraNameLabel": "Camera name",
+  "monitoringCameraNameHint": "Enter a camera name",
+  "monitoringCancelAction": "Cancel",
+  "monitoringSaveAction": "Save",
+  "monitoringRenameAction": "Rename",
+  "monitoringDeleteAction": "Delete camera",
+  "monitoringDemoBadge": "DEMO",
+  "monitoringTapToView": "Demo camera widget, no live video.",
+  "monitoringDemoTapMessage": "{cameraName} is currently only a demo widget.",
+  "@monitoringDemoTapMessage": {
+    "placeholders": {
+      "cameraName": {
+        "type": "String"
+      }
+    }
+  },
+  "monitoringEmptyTitle": "No demo cameras yet",
+  "monitoringEmptyDescription": "Add a camera to try the demo monitoring layout.",
   "monitoringLivingRoomCamera": "Living room camera",
   "monitoringEntryCamera": "Entrance camera",
   "monitoringLiveStatus": "LIVE",
@@ -78,6 +99,84 @@
       }
     }
   },
+  "healthProfileDemoDescription": "The data below is a simulated health profile used to demo the elderly care monitoring interface.",
+  "healthProfileDemoBadge": "DEMO DATA",
+  "healthProfileDemoName": "Nguyen Thi Lan",
+  "healthProfileAgeLabel": "Age",
+  "healthProfileAgeValue": "{label}: {age}",
+  "@healthProfileAgeValue": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileFieldValue": "{label}: {value}",
+  "@healthProfileFieldValue": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "healthProfileBloodTypeLabel": "Blood type",
+  "healthProfileCareLevelLabel": "Care level",
+  "healthProfileCareLevelValue": "Daily monitoring",
+  "healthProfileVitalsSection": "Vital signs",
+  "healthProfileHeartRateLabel": "Resting heart rate",
+  "healthProfileHeartRateValue": "{value} bpm",
+  "@healthProfileHeartRateValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileBloodPressureLabel": "Blood pressure",
+  "healthProfileSpo2Label": "SpO2",
+  "healthProfileSpo2Value": "{value}%",
+  "@healthProfileSpo2Value": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileWeightLabel": "Weight",
+  "healthProfileWeightValue": "{value} kg",
+  "@healthProfileWeightValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "healthProfileConditionsSection": "Conditions and notes",
+  "healthProfileConditionHypertension": "Hypertension",
+  "healthProfileConditionArthritis": "Osteoarthritis",
+  "healthProfileConditionMemory": "Mild memory decline",
+  "healthProfileAllergyLabel": "Allergies",
+  "healthProfileAllergyValue": "No known medication allergies",
+  "healthProfileLastCheckupLabel": "Last checkup",
+  "healthProfileLastCheckupValue": "March 26, 2026",
+  "healthProfileMedicationSection": "Medication schedule",
+  "healthProfileMedicationMorningLabel": "Morning",
+  "healthProfileMedicationMorningValue": "Amlodipine 5mg after breakfast",
+  "healthProfileMedicationEveningLabel": "Evening",
+  "healthProfileMedicationEveningValue": "Calcium D3 before sleep",
+  "healthProfileEmergencySection": "Emergency contact",
+  "healthProfileEmergencyContactLabel": "Contact person",
+  "healthProfileEmergencyContactValue": "Nguyen Minh Tuan (son)",
+  "healthProfileEmergencyPhoneLabel": "Phone number",
+  "healthProfileEmergencyPhoneValue": "0903 456 789",
+  "healthProfileAddressLabel": "Address",
+  "healthProfileAddressValue": "145 Le Loi, District 1, Ho Chi Minh City",
   "notificationCenterTitle": "Notifications",
   "notificationCenterSubtitle": "Push alerts received on this device.",
   "notificationEmptyMessage": "No notifications yet.",

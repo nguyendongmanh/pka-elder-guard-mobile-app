@@ -81,7 +81,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validationErrorMessage => 'Please check the information you entered.';
 
   @override
-  String get networkErrorMessage => 'Unable to connect to the server. Please check your localhost API.';
+  String get networkErrorMessage => 'Unable to connect to the server. Please check your API configuration.';
 
   @override
   String get serverErrorMessage => 'The server returned an unexpected response.';
@@ -122,6 +122,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get monitoringSubtitle => 'Keep track of the most important areas in the home.';
+
+  @override
+  String get monitoringAddCameraAction => 'Add camera';
+
+  @override
+  String get monitoringAddCameraTitle => 'Add demo camera';
+
+  @override
+  String get monitoringEditCameraTitle => 'Rename camera';
+
+  @override
+  String get monitoringCameraNameLabel => 'Camera name';
+
+  @override
+  String get monitoringCameraNameHint => 'Enter a camera name';
+
+  @override
+  String get monitoringCancelAction => 'Cancel';
+
+  @override
+  String get monitoringSaveAction => 'Save';
+
+  @override
+  String get monitoringRenameAction => 'Rename';
+
+  @override
+  String get monitoringDeleteAction => 'Delete camera';
+
+  @override
+  String get monitoringDemoBadge => 'DEMO';
+
+  @override
+  String get monitoringTapToView => 'Demo camera widget, no live video.';
+
+  @override
+  String monitoringDemoTapMessage(String cameraName) {
+    return '$cameraName is currently only a demo widget.';
+  }
+
+  @override
+  String get monitoringEmptyTitle => 'No demo cameras yet';
+
+  @override
+  String get monitoringEmptyDescription => 'Add a camera to try the demo monitoring layout.';
 
   @override
   String get monitoringLivingRoomCamera => 'Living room camera';
@@ -175,6 +219,127 @@ class AppLocalizationsEn extends AppLocalizations {
   String menuComingSoonMessage(String section) {
     return '$section will be available soon.';
   }
+
+  @override
+  String get healthProfileDemoDescription => 'The data below is a simulated health profile used to demo the elderly care monitoring interface.';
+
+  @override
+  String get healthProfileDemoBadge => 'DEMO DATA';
+
+  @override
+  String get healthProfileDemoName => 'Nguyen Thi Lan';
+
+  @override
+  String get healthProfileAgeLabel => 'Age';
+
+  @override
+  String healthProfileAgeValue(String label, int age) {
+    return '$label: $age';
+  }
+
+  @override
+  String healthProfileFieldValue(String label, String value) {
+    return '$label: $value';
+  }
+
+  @override
+  String get healthProfileBloodTypeLabel => 'Blood type';
+
+  @override
+  String get healthProfileCareLevelLabel => 'Care level';
+
+  @override
+  String get healthProfileCareLevelValue => 'Daily monitoring';
+
+  @override
+  String get healthProfileVitalsSection => 'Vital signs';
+
+  @override
+  String get healthProfileHeartRateLabel => 'Resting heart rate';
+
+  @override
+  String healthProfileHeartRateValue(int value) {
+    return '$value bpm';
+  }
+
+  @override
+  String get healthProfileBloodPressureLabel => 'Blood pressure';
+
+  @override
+  String get healthProfileSpo2Label => 'SpO2';
+
+  @override
+  String healthProfileSpo2Value(int value) {
+    return '$value%';
+  }
+
+  @override
+  String get healthProfileWeightLabel => 'Weight';
+
+  @override
+  String healthProfileWeightValue(int value) {
+    return '$value kg';
+  }
+
+  @override
+  String get healthProfileConditionsSection => 'Conditions and notes';
+
+  @override
+  String get healthProfileConditionHypertension => 'Hypertension';
+
+  @override
+  String get healthProfileConditionArthritis => 'Osteoarthritis';
+
+  @override
+  String get healthProfileConditionMemory => 'Mild memory decline';
+
+  @override
+  String get healthProfileAllergyLabel => 'Allergies';
+
+  @override
+  String get healthProfileAllergyValue => 'No known medication allergies';
+
+  @override
+  String get healthProfileLastCheckupLabel => 'Last checkup';
+
+  @override
+  String get healthProfileLastCheckupValue => 'March 26, 2026';
+
+  @override
+  String get healthProfileMedicationSection => 'Medication schedule';
+
+  @override
+  String get healthProfileMedicationMorningLabel => 'Morning';
+
+  @override
+  String get healthProfileMedicationMorningValue => 'Amlodipine 5mg after breakfast';
+
+  @override
+  String get healthProfileMedicationEveningLabel => 'Evening';
+
+  @override
+  String get healthProfileMedicationEveningValue => 'Calcium D3 before sleep';
+
+  @override
+  String get healthProfileEmergencySection => 'Emergency contact';
+
+  @override
+  String get healthProfileEmergencyContactLabel => 'Contact person';
+
+  @override
+  String get healthProfileEmergencyContactValue => 'Nguyen Minh Tuan (son)';
+
+  @override
+  String get healthProfileEmergencyPhoneLabel => 'Phone number';
+
+  @override
+  String get healthProfileEmergencyPhoneValue => '0903 456 789';
+
+  @override
+  String get healthProfileAddressLabel => 'Address';
+
+  @override
+  String get healthProfileAddressValue => '145 Le Loi, District 1, Ho Chi Minh City';
 
   @override
   String get notificationCenterTitle => 'Notifications';

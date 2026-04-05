@@ -22,7 +22,11 @@ class ApiClient {
   }) {
     return _sendGet(
       Uri.parse('${AppConfig.baseUrl}$path'),
-      headers: <String, String>{'Accept': 'application/json', ...?headers},
+      headers: <String, String>{
+        'Accept': 'application/json',
+        ...AppConfig.defaultHeaders,
+        ...?headers,
+      },
     );
   }
 
@@ -32,7 +36,11 @@ class ApiClient {
   }) {
     return _sendPost(
       Uri.parse('${AppConfig.baseUrl}$path'),
-      headers: <String, String>{'Accept': 'application/json', ...?headers},
+      headers: <String, String>{
+        'Accept': 'application/json',
+        ...AppConfig.defaultHeaders,
+        ...?headers,
+      },
     );
   }
 
@@ -42,9 +50,10 @@ class ApiClient {
   }) {
     return _sendPost(
       Uri.parse('${AppConfig.baseUrl}$path'),
-      headers: const <String, String>{
+      headers: <String, String>{
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        ...AppConfig.defaultHeaders,
       },
       body: jsonEncode(body),
     );
@@ -56,7 +65,11 @@ class ApiClient {
   }) {
     return _sendDelete(
       Uri.parse('${AppConfig.baseUrl}$path'),
-      headers: <String, String>{'Accept': 'application/json', ...?headers},
+      headers: <String, String>{
+        'Accept': 'application/json',
+        ...AppConfig.defaultHeaders,
+        ...?headers,
+      },
     );
   }
 
@@ -66,9 +79,10 @@ class ApiClient {
   }) {
     return _sendPost(
       Uri.parse('${AppConfig.baseUrl}$path'),
-      headers: const <String, String>{
+      headers: <String, String>{
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
+        ...AppConfig.defaultHeaders,
       },
       body: body.entries
           .map(

@@ -10,6 +10,7 @@ import 'package:elder_guard_app/features/auth/presentation/widgets/language_swit
 import 'package:elder_guard_app/features/home/presentation/widgets/home_bottom_action_bar.dart';
 import 'package:elder_guard_app/features/home/presentation/widgets/home_welcome_card.dart';
 import 'package:elder_guard_app/features/menu/presentation/screens/menu_screen.dart';
+import 'package:elder_guard_app/features/monitoring/presentation/screens/monitoring_screen.dart';
 import 'package:elder_guard_app/core/notifications/models/push_notification_record.dart';
 import 'package:elder_guard_app/features/notifications/presentation/controllers/notification_center_controller.dart';
 import 'package:elder_guard_app/features/notifications/presentation/screens/notifications_screen.dart';
@@ -191,7 +192,6 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
                           child: _buildTabContent(
                             session: session,
                             isSubmitting: isSubmitting,
-                            l10n: l10n,
                           ),
                         ),
                       ),
@@ -215,7 +215,6 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
   Widget _buildTabContent({
     required AuthSession? session,
     required bool isSubmitting,
-    required AppLocalizations l10n,
   }) {
     if (_currentIndex == _notificationsTabIndex) {
       return const NotificationsScreen();
@@ -223,6 +222,10 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
 
     if (_currentIndex == 0) {
       return HomeWelcomeCard(session: session);
+    }
+
+    if (_currentIndex == 1) {
+      return const MonitoringScreen();
     }
 
     if (_currentIndex == 3) {

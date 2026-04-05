@@ -242,7 +242,7 @@ abstract class AppLocalizations {
   /// No description provided for @networkErrorMessage.
   ///
   /// In en, this message translates to:
-  /// **'Unable to connect to the server. Please check your localhost API.'**
+  /// **'Unable to connect to the server. Please check your API configuration.'**
   String get networkErrorMessage;
 
   /// No description provided for @serverErrorMessage.
@@ -316,6 +316,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Keep track of the most important areas in the home.'**
   String get monitoringSubtitle;
+
+  /// No description provided for @monitoringAddCameraAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add camera'**
+  String get monitoringAddCameraAction;
+
+  /// No description provided for @monitoringAddCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add demo camera'**
+  String get monitoringAddCameraTitle;
+
+  /// No description provided for @monitoringEditCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename camera'**
+  String get monitoringEditCameraTitle;
+
+  /// No description provided for @monitoringCameraNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera name'**
+  String get monitoringCameraNameLabel;
+
+  /// No description provided for @monitoringCameraNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a camera name'**
+  String get monitoringCameraNameHint;
+
+  /// No description provided for @monitoringCancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get monitoringCancelAction;
+
+  /// No description provided for @monitoringSaveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get monitoringSaveAction;
+
+  /// No description provided for @monitoringRenameAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get monitoringRenameAction;
+
+  /// No description provided for @monitoringDeleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete camera'**
+  String get monitoringDeleteAction;
+
+  /// No description provided for @monitoringDemoBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'DEMO'**
+  String get monitoringDemoBadge;
+
+  /// No description provided for @monitoringTapToView.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo camera widget, no live video.'**
+  String get monitoringTapToView;
+
+  /// No description provided for @monitoringDemoTapMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{cameraName} is currently only a demo widget.'**
+  String monitoringDemoTapMessage(String cameraName);
+
+  /// No description provided for @monitoringEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No demo cameras yet'**
+  String get monitoringEmptyTitle;
+
+  /// No description provided for @monitoringEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a camera to try the demo monitoring layout.'**
+  String get monitoringEmptyDescription;
 
   /// No description provided for @monitoringLivingRoomCamera.
   ///
@@ -418,6 +502,228 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{section} will be available soon.'**
   String menuComingSoonMessage(String section);
+
+  /// No description provided for @healthProfileDemoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The data below is a simulated health profile used to demo the elderly care monitoring interface.'**
+  String get healthProfileDemoDescription;
+
+  /// No description provided for @healthProfileDemoBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'DEMO DATA'**
+  String get healthProfileDemoBadge;
+
+  /// No description provided for @healthProfileDemoName.
+  ///
+  /// In en, this message translates to:
+  /// **'Nguyen Thi Lan'**
+  String get healthProfileDemoName;
+
+  /// No description provided for @healthProfileAgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get healthProfileAgeLabel;
+
+  /// No description provided for @healthProfileAgeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}: {age}'**
+  String healthProfileAgeValue(String label, int age);
+
+  /// No description provided for @healthProfileFieldValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}: {value}'**
+  String healthProfileFieldValue(String label, String value);
+
+  /// No description provided for @healthProfileBloodTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood type'**
+  String get healthProfileBloodTypeLabel;
+
+  /// No description provided for @healthProfileCareLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Care level'**
+  String get healthProfileCareLevelLabel;
+
+  /// No description provided for @healthProfileCareLevelValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily monitoring'**
+  String get healthProfileCareLevelValue;
+
+  /// No description provided for @healthProfileVitalsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Vital signs'**
+  String get healthProfileVitalsSection;
+
+  /// No description provided for @healthProfileHeartRateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Resting heart rate'**
+  String get healthProfileHeartRateLabel;
+
+  /// No description provided for @healthProfileHeartRateValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} bpm'**
+  String healthProfileHeartRateValue(int value);
+
+  /// No description provided for @healthProfileBloodPressureLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood pressure'**
+  String get healthProfileBloodPressureLabel;
+
+  /// No description provided for @healthProfileSpo2Label.
+  ///
+  /// In en, this message translates to:
+  /// **'SpO2'**
+  String get healthProfileSpo2Label;
+
+  /// No description provided for @healthProfileSpo2Value.
+  ///
+  /// In en, this message translates to:
+  /// **'{value}%'**
+  String healthProfileSpo2Value(int value);
+
+  /// No description provided for @healthProfileWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get healthProfileWeightLabel;
+
+  /// No description provided for @healthProfileWeightValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} kg'**
+  String healthProfileWeightValue(int value);
+
+  /// No description provided for @healthProfileConditionsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Conditions and notes'**
+  String get healthProfileConditionsSection;
+
+  /// No description provided for @healthProfileConditionHypertension.
+  ///
+  /// In en, this message translates to:
+  /// **'Hypertension'**
+  String get healthProfileConditionHypertension;
+
+  /// No description provided for @healthProfileConditionArthritis.
+  ///
+  /// In en, this message translates to:
+  /// **'Osteoarthritis'**
+  String get healthProfileConditionArthritis;
+
+  /// No description provided for @healthProfileConditionMemory.
+  ///
+  /// In en, this message translates to:
+  /// **'Mild memory decline'**
+  String get healthProfileConditionMemory;
+
+  /// No description provided for @healthProfileAllergyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies'**
+  String get healthProfileAllergyLabel;
+
+  /// No description provided for @healthProfileAllergyValue.
+  ///
+  /// In en, this message translates to:
+  /// **'No known medication allergies'**
+  String get healthProfileAllergyValue;
+
+  /// No description provided for @healthProfileLastCheckupLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Last checkup'**
+  String get healthProfileLastCheckupLabel;
+
+  /// No description provided for @healthProfileLastCheckupValue.
+  ///
+  /// In en, this message translates to:
+  /// **'March 26, 2026'**
+  String get healthProfileLastCheckupValue;
+
+  /// No description provided for @healthProfileMedicationSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication schedule'**
+  String get healthProfileMedicationSection;
+
+  /// No description provided for @healthProfileMedicationMorningLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get healthProfileMedicationMorningLabel;
+
+  /// No description provided for @healthProfileMedicationMorningValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Amlodipine 5mg after breakfast'**
+  String get healthProfileMedicationMorningValue;
+
+  /// No description provided for @healthProfileMedicationEveningLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening'**
+  String get healthProfileMedicationEveningLabel;
+
+  /// No description provided for @healthProfileMedicationEveningValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Calcium D3 before sleep'**
+  String get healthProfileMedicationEveningValue;
+
+  /// No description provided for @healthProfileEmergencySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contact'**
+  String get healthProfileEmergencySection;
+
+  /// No description provided for @healthProfileEmergencyContactLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact person'**
+  String get healthProfileEmergencyContactLabel;
+
+  /// No description provided for @healthProfileEmergencyContactValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Nguyen Minh Tuan (son)'**
+  String get healthProfileEmergencyContactValue;
+
+  /// No description provided for @healthProfileEmergencyPhoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get healthProfileEmergencyPhoneLabel;
+
+  /// No description provided for @healthProfileEmergencyPhoneValue.
+  ///
+  /// In en, this message translates to:
+  /// **'0903 456 789'**
+  String get healthProfileEmergencyPhoneValue;
+
+  /// No description provided for @healthProfileAddressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get healthProfileAddressLabel;
+
+  /// No description provided for @healthProfileAddressValue.
+  ///
+  /// In en, this message translates to:
+  /// **'145 Le Loi, District 1, Ho Chi Minh City'**
+  String get healthProfileAddressValue;
 
   /// No description provided for @notificationCenterTitle.
   ///
