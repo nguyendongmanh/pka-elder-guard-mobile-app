@@ -76,7 +76,9 @@ class AuthController extends Notifier<AuthState> {
 
   Future<void> _restoreSession() async {
     try {
-      final session = await _repository.restoreSession();
+      final session = await _repository.restoreSession().timeout(
+        const Duration(seconds: 3),
+      );
       state =
           session == null
               ? const AuthState.unauthenticated()

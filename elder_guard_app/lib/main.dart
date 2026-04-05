@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:elder_guard_app/app/elder_guard_app.dart';
 import 'package:elder_guard_app/core/di/core_providers.dart';
 import 'package:elder_guard_app/core/notifications/device_notification_service.dart';
@@ -14,9 +16,6 @@ Future<void> main() async {
   final deviceNotificationService = DeviceNotificationService();
   final oneSignalService = OneSignalService(appId: _oneSignalAppId);
 
-  await oneSignalService.initialize();
-  await deviceNotificationService.initialize();
-
   runApp(
     ProviderScope(
       overrides: [
@@ -29,4 +28,42 @@ Future<void> main() async {
       child: const ElderGuardApp(),
     ),
   );
+
+  unawaited(_initializeServices(
+    oneSignalService: oneSignalService,
+    deviceNotificationService: deviceNotificationService,
+  ));
+}
+
+Future<void> _initializeServices({
+  required OneSignalService oneSignalService,
+  required DeviceNotificationService deviceNotificationService,
+}) async {
+  try {
+    await oneSignalService.initialize().timeout(const Duration(seconds: 8));
+  } on Object catch (error, stackTrace) {
+    FlutterError.reportError(
+      FlutterErrorDetails(
+        exception: error,
+        stack: stackTrace,
+        library: 'main',
+        context: ErrorDescription('while initializing OneSignal'),
+      ),
+    );
+  }
+
+  try {
+    await deviceNotificationService.initialize().timeout(
+      const Duration(seconds: 8),
+    );
+  } on Object catch (error, stackTrace) {
+    FlutterError.reportError(
+      FlutterErrorDetails(
+        exception: error,
+        stack: stackTrace,
+        library: 'main',
+        context: ErrorDescription('while initializing device notifications'),
+      ),
+    );
+  }
 }
