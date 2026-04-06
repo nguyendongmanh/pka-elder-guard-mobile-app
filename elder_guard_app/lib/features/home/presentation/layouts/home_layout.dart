@@ -7,9 +7,15 @@ import 'package:elder_guard_app/features/auth/data/models/auth_session.dart';
 import 'package:elder_guard_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:elder_guard_app/features/auth/presentation/widgets/auth_background.dart';
 import 'package:elder_guard_app/features/auth/presentation/widgets/language_switch_button.dart';
+import 'package:elder_guard_app/features/geofence/presentation/screens/geofence_setup_screen.dart';
+import 'package:elder_guard_app/features/health_profile/presentation/screens/health_profile_screen.dart';
+import 'package:elder_guard_app/features/home/presentation/models/home_service_item.dart';
 import 'package:elder_guard_app/features/home/presentation/widgets/home_bottom_action_bar.dart';
-import 'package:elder_guard_app/features/home/presentation/widgets/home_welcome_card.dart';
+import 'package:elder_guard_app/features/home/presentation/widgets/home_service_dashboard.dart';
 import 'package:elder_guard_app/features/menu/presentation/screens/menu_screen.dart';
+import 'package:elder_guard_app/features/monitoring/presentation/controllers/monitoring_cameras_controller.dart';
+import 'package:elder_guard_app/features/monitoring/presentation/models/demo_camera_item.dart';
+import 'package:elder_guard_app/features/monitoring/presentation/screens/monitoring_camera_detail_screen.dart';
 import 'package:elder_guard_app/features/monitoring/presentation/screens/monitoring_screen.dart';
 import 'package:elder_guard_app/core/notifications/models/push_notification_record.dart';
 import 'package:elder_guard_app/features/notifications/presentation/controllers/notification_center_controller.dart';
@@ -98,7 +104,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
             return;
           }
 
-          _openNotificationsTab(readNotificationId: next.notificationId);
+          _openNotificationTarget(notificationId: next.notificationId);
           ref
               .read(notificationCenterControllerProvider.notifier)
               .consumeOpenRequest(next.sequence);
@@ -113,6 +119,50 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     final isSubmitting = ref.watch(
       authControllerProvider.select((state) => state.isSubmitting),
     );
+    final homeServiceItems = <HomeServiceItem>[
+      HomeServiceItem(
+        kind: HomeServiceKind.safeZone,
+        title: l10n.homeServiceSafeZoneTitle,
+        subtitle: l10n.homeServiceSafeZoneSubtitle,
+        icon: Icons.my_location_rounded,
+        accentColor: AppColors.tealPrimary,
+      ),
+      HomeServiceItem(
+        kind: HomeServiceKind.monitoring,
+        title: l10n.monitoringTitle,
+        subtitle: l10n.homeServiceMonitoringSubtitle,
+        icon: Icons.videocam_rounded,
+        accentColor: AppColors.tealSecondary,
+      ),
+      HomeServiceItem(
+        kind: HomeServiceKind.notifications,
+        title: l10n.notificationCenterTitle,
+        subtitle: l10n.homeServiceNotificationsSubtitle,
+        icon: Icons.notifications_active_rounded,
+        accentColor: AppColors.notificationBlue,
+      ),
+      HomeServiceItem(
+        kind: HomeServiceKind.healthProfile,
+        title: l10n.menuHealthProfileTitle,
+        subtitle: l10n.homeServiceHealthProfileSubtitle,
+        icon: Icons.favorite_rounded,
+        accentColor: const Color(0xFFD86E4A),
+      ),
+      HomeServiceItem(
+        kind: HomeServiceKind.medication,
+        title: l10n.homeServiceMedicationTitle,
+        subtitle: l10n.homeServiceMedicationSubtitle,
+        icon: Icons.medication_liquid_rounded,
+        accentColor: const Color(0xFFE0952E),
+      ),
+      HomeServiceItem(
+        kind: HomeServiceKind.familyContacts,
+        title: l10n.homeServiceFamilyTitle,
+        subtitle: l10n.homeServiceFamilySubtitle,
+        icon: Icons.groups_rounded,
+        accentColor: const Color(0xFF8F5FBF),
+      ),
+    ];
     final items = <HomeBottomBarItemData>[
       HomeBottomBarItemData(
         label: l10n.navHome,
@@ -144,61 +194,73 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
           bottom: false,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 430),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Elder Guard',
-                            style: GoogleFonts.merriweather(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w800,
-                              color: AppColors.creamLight,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        const LanguageSwitchButton(),
-                      ],
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: 430,
+                      minHeight: constraints.maxHeight,
                     ),
-                    const SizedBox(height: 22),
-                    Expanded(
-                      child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 260),
-                        switchInCurve: Curves.easeOut,
-                        switchOutCurve: Curves.easeIn,
-                        transitionBuilder: (child, animation) {
-                          final offsetAnimation = Tween<Offset>(
-                            begin: const Offset(0.08, 0),
-                            end: Offset.zero,
-                          ).animate(animation);
-
-                          return FadeTransition(
-                            opacity: animation,
-                            child: SlideTransition(
-                              position: offsetAnimation,
-                              child: child,
-                            ),
-                          );
-                        },
-                        child: KeyedSubtree(
-                          key: ValueKey(_currentIndex),
-                          child: _buildTabContent(
-                            session: session,
-                            isSubmitting: isSubmitting,
+                    child: SizedBox(
+                      height: constraints.maxHeight,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Elder Guard',
+                                  style: GoogleFonts.merriweather(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.creamLight,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              const LanguageSwitchButton(),
+                            ],
                           ),
-                        ),
+                          const SizedBox(height: 22),
+                          Expanded(
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 260),
+                              switchInCurve: Curves.easeOut,
+                              switchOutCurve: Curves.easeIn,
+                              transitionBuilder: (child, animation) {
+                                final offsetAnimation = Tween<Offset>(
+                                  begin: const Offset(0.08, 0),
+                                  end: Offset.zero,
+                                ).animate(animation);
+
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: SlideTransition(
+                                    position: offsetAnimation,
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              child: KeyedSubtree(
+                                key: ValueKey(_currentIndex),
+                                child: _buildTabContent(
+                                  session: session,
+                                  isSubmitting: isSubmitting,
+                                  homeServiceItems: homeServiceItems,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
           ),
         ),
@@ -215,13 +277,18 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
   Widget _buildTabContent({
     required AuthSession? session,
     required bool isSubmitting,
+    required List<HomeServiceItem> homeServiceItems,
   }) {
     if (_currentIndex == _notificationsTabIndex) {
       return const NotificationsScreen();
     }
 
     if (_currentIndex == 0) {
-      return HomeWelcomeCard(session: session);
+      return HomeServiceDashboard(
+        session: session,
+        items: homeServiceItems,
+        onServiceSelected: (kind) => _handleHomeServiceSelection(kind, session),
+      );
     }
 
     if (_currentIndex == 1) {
@@ -236,6 +303,60 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     }
 
     return const SizedBox.expand();
+  }
+
+  void _handleHomeServiceSelection(HomeServiceKind kind, AuthSession? session) {
+    final l10n = AppLocalizations.of(context)!;
+
+    switch (kind) {
+      case HomeServiceKind.safeZone:
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder:
+                (context) => GeofenceSetupScreen(
+                  initialDeviceId: _buildInitialDeviceId(session),
+                ),
+          ),
+        );
+        return;
+      case HomeServiceKind.monitoring:
+        _handleTabTap(1);
+        return;
+      case HomeServiceKind.notifications:
+        _openNotificationsTab();
+        return;
+      case HomeServiceKind.healthProfile:
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (context) => const HealthProfileScreen(),
+          ),
+        );
+        return;
+      case HomeServiceKind.medication:
+        _showServiceSnackbar(
+          l10n.menuComingSoonMessage(l10n.homeServiceMedicationTitle),
+        );
+        return;
+      case HomeServiceKind.familyContacts:
+        _showServiceSnackbar(
+          l10n.menuComingSoonMessage(l10n.homeServiceFamilyTitle),
+        );
+        return;
+    }
+  }
+
+  String _buildInitialDeviceId(AuthSession? session) {
+    final userId = session?.userId?.trim();
+    if (userId != null && userId.isNotEmpty) {
+      return 'mobile-$userId';
+    }
+
+    final email = session?.email.trim();
+    if (email != null && email.isNotEmpty) {
+      return email;
+    }
+
+    return 'demo-device-01';
   }
 
   Future<void> _bootstrapAfterFirstFrame() async {
@@ -263,7 +384,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
           debugPrint(
             'Push pipeline: device notification tapped payload=$payload',
           );
-          _openNotificationsTab(readNotificationId: payload);
+          _openNotificationTarget(notificationId: payload);
         });
 
     final pendingPayload = deviceNotificationService.takePendingPayload();
@@ -271,7 +392,7 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
       debugPrint(
         'Push pipeline: app launched from device notification payload=$pendingPayload',
       );
-      _openNotificationsTab(readNotificationId: pendingPayload);
+      _openNotificationTarget(notificationId: pendingPayload);
     }
 
     final notificationCenterState = ref.read(
@@ -287,8 +408,8 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
 
     final pendingOpenRequest = notificationCenterState.pendingOpenRequest;
     if (pendingOpenRequest != null) {
-      _openNotificationsTab(
-        readNotificationId: pendingOpenRequest.notificationId,
+      _openNotificationTarget(
+        notificationId: pendingOpenRequest.notificationId,
       );
       ref
           .read(notificationCenterControllerProvider.notifier)
@@ -330,6 +451,93 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     _handleTabTap(_notificationsTabIndex);
   }
 
+  void _openNotificationTarget({String? notificationId}) {
+    if (!mounted) {
+      return;
+    }
+
+    final normalizedNotificationId = notificationId?.trim();
+    if (normalizedNotificationId == null || normalizedNotificationId.isEmpty) {
+      _openNotificationsTab();
+      return;
+    }
+
+    final notificationCenterController = ref.read(
+      notificationCenterControllerProvider.notifier,
+    );
+    final notification = _findNotificationById(normalizedNotificationId);
+    notificationCenterController.markAsRead(normalizedNotificationId);
+
+    final cameraId = notification?.cameraId;
+    if (cameraId != null) {
+      ref
+          .read(monitoringCamerasControllerProvider.notifier)
+          .focusCamera(cameraId);
+      final camera = _findCameraById(cameraId);
+      _removePopupOverlay();
+      _handleTabTap(1);
+      if (camera != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) {
+            return;
+          }
+
+          _openCameraDetail(
+            camera: camera,
+            eventType: notification?.eventType,
+            alertTime: notification?.receivedAt,
+            openedFromAlert: true,
+          );
+        });
+      }
+      return;
+    }
+
+    _openNotificationsTab(readNotificationId: normalizedNotificationId);
+  }
+
+  PushNotificationRecord? _findNotificationById(String notificationId) {
+    final notifications =
+        ref.read(notificationCenterControllerProvider).notifications;
+    for (final notification in notifications) {
+      if (notification.id == notificationId) {
+        return notification;
+      }
+    }
+
+    return null;
+  }
+
+  DemoCameraItem? _findCameraById(int cameraId) {
+    final cameras = ref.read(monitoringCamerasControllerProvider).cameras;
+    for (final camera in cameras) {
+      if (camera.id == cameraId) {
+        return camera;
+      }
+    }
+
+    return null;
+  }
+
+  void _openCameraDetail({
+    required DemoCameraItem camera,
+    String? eventType,
+    DateTime? alertTime,
+    bool openedFromAlert = false,
+  }) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder:
+            (context) => MonitoringCameraDetailScreen(
+              camera: camera,
+              eventType: eventType,
+              alertTime: alertTime,
+              openedFromAlert: openedFromAlert,
+            ),
+      ),
+    );
+  }
+
   void _showPopupOverlay(PushNotificationRecord notification) {
     _popupTimer?.cancel();
     _removePopupOverlay();
@@ -351,8 +559,8 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
                     child: NotificationPopupCard(
                       notification: notification,
                       onOpen:
-                          () => _openNotificationsTab(
-                            readNotificationId: notification.id,
+                          () => _openNotificationTarget(
+                            notificationId: notification.id,
                           ),
                     ),
                   ),
@@ -371,5 +579,11 @@ class _HomeLayoutState extends ConsumerState<HomeLayout> {
     _popupTimer = null;
     _popupOverlayEntry?.remove();
     _popupOverlayEntry = null;
+  }
+
+  void _showServiceSnackbar(String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
   }
 }

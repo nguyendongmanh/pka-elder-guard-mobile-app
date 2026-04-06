@@ -1,6 +1,7 @@
 import 'package:elder_guard_app/app/theme/app_colors.dart';
 import 'package:elder_guard_app/features/monitoring/presentation/controllers/monitoring_cameras_controller.dart';
 import 'package:elder_guard_app/features/monitoring/presentation/models/demo_camera_item.dart';
+import 'package:elder_guard_app/features/monitoring/presentation/screens/monitoring_camera_detail_screen.dart';
 import 'package:elder_guard_app/features/monitoring/presentation/widgets/camera_grid_tile.dart';
 import 'package:elder_guard_app/features/monitoring/presentation/widgets/camera_name_dialog.dart';
 import 'package:elder_guard_app/l10n/generated/app_localizations.dart';
@@ -15,95 +16,106 @@ class MonitoringScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final state = ref.watch(monitoringCamerasControllerProvider);
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final cameraTileHeight = screenWidth < 390 ? 270.0 : 250.0;
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
 
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.monitoringTitle,
-                        style: GoogleFonts.merriweather(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.deepTeal,
+    return RefreshIndicator(
+      color: AppColors.tealPrimary,
+      onRefresh:
+          ref
+              .read(monitoringCamerasControllerProvider.notifier)
+              .refreshCameraOrder,
+      child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.monitoringTitle,
+                          style: GoogleFonts.merriweather(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w800,
+                            color: AppColors.deepTeal,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        l10n.monitoringSubtitle,
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(width: 14),
-                FilledButton(
-                  onPressed:
+                  const SizedBox(width: 14),
+                  FilledButton(
+                    onPressed:
+                        () => _showAddCameraDialog(
+                          context,
+                          ref,
+                          state.nextCameraNumber,
+                        ),
+                    style: FilledButton.styleFrom(
+                      backgroundColor: AppColors.tealPrimary,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: const Icon(Icons.add_rounded, size: 24),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          if (state.cameras.isEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: bottomInset + 132),
+                child: _EmptyMonitoringState(
+                  onAddPressed:
                       () => _showAddCameraDialog(
                         context,
                         ref,
                         state.nextCameraNumber,
                       ),
-                  style: FilledButton.styleFrom(
-                    backgroundColor: AppColors.tealPrimary,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: const Icon(Icons.add_rounded, size: 24),
                 ),
-              ],
-            ),
-          ),
-        ),
-        if (state.cameras.isEmpty)
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 28),
-              child: _EmptyMonitoringState(
-                onAddPressed:
-                    () => _showAddCameraDialog(
-                      context,
-                      ref,
-                      state.nextCameraNumber,
-                    ),
+              ),
+            )
+          else
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: bottomInset + 132),
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 14,
+                  mainAxisExtent: cameraTileHeight,
+                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final camera = state.cameras[index];
+                  return CameraGridTile(
+                    camera: camera,
+                    isHighlighted: camera.highlightedByAlert,
+                    onTap: () {
+                      ref
+                          .read(monitoringCamerasControllerProvider.notifier)
+                          .focusCamera(camera.id);
+                      _openCameraDetail(context, camera: camera);
+                    },
+                    onSelectedAction:
+                        (action) =>
+                            _handleTileAction(context, ref, camera, action),
+                  );
+                }, childCount: state.cameras.length),
               ),
             ),
-          )
-        else
-          SliverPadding(
-            padding: const EdgeInsets.only(bottom: 28),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 14,
-                mainAxisSpacing: 14,
-                childAspectRatio: 0.82,
-              ),
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final camera = state.cameras[index];
-                return CameraGridTile(
-                  camera: camera,
-                  onTap: () => _showDemoTapMessage(context, camera),
-                  onSelectedAction:
-                      (action) =>
-                          _handleTileAction(context, ref, camera, action),
-                );
-              }, childCount: state.cameras.length),
-            ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -184,13 +196,24 @@ class MonitoringScreen extends ConsumerWidget {
     }
   }
 
-  void _showDemoTapMessage(BuildContext context, DemoCameraItem camera) {
-    final l10n = AppLocalizations.of(context)!;
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(content: Text(l10n.monitoringDemoTapMessage(camera.name))),
-      );
+  void _openCameraDetail(
+    BuildContext context, {
+    required DemoCameraItem camera,
+    String? eventType,
+    DateTime? alertTime,
+    bool openedFromAlert = false,
+  }) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder:
+            (context) => MonitoringCameraDetailScreen(
+              camera: camera,
+              eventType: eventType,
+              alertTime: alertTime,
+              openedFromAlert: openedFromAlert,
+            ),
+      ),
+    );
   }
 }
 

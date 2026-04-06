@@ -140,6 +140,24 @@ class NotificationCenterController extends Notifier<NotificationCenterState> {
     await Future<void>.delayed(const Duration(milliseconds: 250));
   }
 
+  void requestOpenNotification(String notificationId) {
+    final normalizedNotificationId = notificationId.trim();
+    if (normalizedNotificationId.isEmpty) {
+      return;
+    }
+
+    markAsRead(normalizedNotificationId);
+    state = NotificationCenterState(
+      notifications: state.notifications,
+      subscriptionId: state.subscriptionId,
+      pendingPopup: state.pendingPopup,
+      pendingOpenRequest: NotificationOpenRequest(
+        sequence: ++_openSequence,
+        notificationId: normalizedNotificationId,
+      ),
+    );
+  }
+
   void markAsRead(String notificationId) {
     final notifications = List<PushNotificationRecord>.from(
       state.notifications,

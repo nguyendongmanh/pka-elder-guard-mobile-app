@@ -96,6 +96,45 @@ class AppLocalizationsVi extends AppLocalizations {
   String get homeSubtitle => 'Bạn đã đăng nhập và sẵn sàng gọi các API cần xác thực.';
 
   @override
+  String get homeServicesTitle => 'Trung tâm điều phối chăm sóc';
+
+  @override
+  String get homeServicesSubtitle => 'Chọn một tiện ích để cấu hình vùng an toàn, giám sát và các luồng chăm sóc dạng demo.';
+
+  @override
+  String get homeServicesSectionTitle => 'Dịch vụ';
+
+  @override
+  String get homeServicesDemoHint => 'Nhấn vào từng ô để mở màn hình hoặc thao tác demo.';
+
+  @override
+  String get homeServiceSafeZoneTitle => 'Thiết lập vùng an toàn';
+
+  @override
+  String get homeServiceSafeZoneSubtitle => 'Chọn tâm tọa độ trên bản đồ và đặt bán kính cho phép.';
+
+  @override
+  String get homeServiceMonitoringSubtitle => 'Mở nhanh màn hình giám sát camera demo.';
+
+  @override
+  String get homeServiceNotificationsSubtitle => 'Xem các cảnh báo push đã nhận trên thiết bị này.';
+
+  @override
+  String get homeServiceHealthProfileSubtitle => 'Mở hồ sơ sức khỏe người dùng dạng demo.';
+
+  @override
+  String get homeServiceMedicationTitle => 'Nhắc uống thuốc';
+
+  @override
+  String get homeServiceMedicationSubtitle => 'Demo lịch nhắc uống thuốc hằng ngày cho người cao tuổi.';
+
+  @override
+  String get homeServiceFamilyTitle => 'Liên hệ gia đình';
+
+  @override
+  String get homeServiceFamilySubtitle => 'Truy cập nhanh người thân và người chăm sóc tin cậy.';
+
+  @override
   String get navHome => 'Trang chủ';
 
   @override
@@ -139,6 +178,54 @@ class AppLocalizationsVi extends AppLocalizations {
   String get monitoringCameraNameHint => 'Nhập tên camera';
 
   @override
+  String get monitoringCameraIdLabel => 'Mã camera';
+
+  @override
+  String get monitoringCameraModeLabel => 'Chế độ';
+
+  @override
+  String get monitoringCameraModeDemo => 'Demo không phát video';
+
+  @override
+  String get monitoringCameraStatusLabel => 'Trạng thái';
+
+  @override
+  String get monitoringCameraStatusNormal => 'Theo dõi bình thường';
+
+  @override
+  String get monitoringCameraStatusAlert => 'Đang có cảnh báo';
+
+  @override
+  String get monitoringCameraDetailTitle => 'Chi tiết camera';
+
+  @override
+  String get monitoringRecentActivityTitle => 'Hoạt động gần đây';
+
+  @override
+  String get monitoringRecentEventLabel => 'Sự kiện gần nhất';
+
+  @override
+  String get monitoringRecentTimeLabel => 'Thời điểm';
+
+  @override
+  String get monitoringRecentTimeUnavailable => 'Chưa có dữ liệu';
+
+  @override
+  String get monitoringCameraAlertTitle => 'Cảnh báo từ backend';
+
+  @override
+  String get monitoringEventFall => 'Té ngã';
+
+  @override
+  String get monitoringEventViolence => 'Bạo lực';
+
+  @override
+  String get monitoringEventImmobile => 'Bất động';
+
+  @override
+  String get monitoringEventNoData => 'Chưa có sự kiện';
+
+  @override
   String get monitoringCancelAction => 'Hủy';
 
   @override
@@ -154,11 +241,22 @@ class AppLocalizationsVi extends AppLocalizations {
   String get monitoringDemoBadge => 'DEMO';
 
   @override
+  String get monitoringHighlightedBadge => 'ĐANG CẢNH BÁO';
+
+  @override
   String get monitoringTapToView => 'Widget camera demo, không phát video.';
 
   @override
   String monitoringDemoTapMessage(String cameraName) {
     return '$cameraName hiện chỉ là widget demo.';
+  }
+
+  @override
+  String get monitoringFocusedCameraTitle => 'Đang mở camera theo cảnh báo';
+
+  @override
+  String monitoringFocusedCameraMessage(String cameraName) {
+    return 'Hệ thống vừa điều hướng đến $cameraName từ thông báo backend.';
   }
 
   @override
@@ -424,6 +522,83 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get notificationFieldTimestamp => 'Thời gian';
+
+  @override
+  String get geofenceScreenTitle => 'Thiết lập vùng an toàn';
+
+  @override
+  String get geofenceScreenSubtitle => 'Nhấn lên bản đồ để chọn tọa độ tâm, sau đó chỉnh bán kính trước khi gửi dữ liệu lên backend.';
+
+  @override
+  String get geofenceMapTitle => 'Bản đồ demo';
+
+  @override
+  String get geofenceMapHint => 'Nhấn vào vị trí bất kỳ trên bản đồ để cập nhật tâm tọa độ.';
+
+  @override
+  String get geofenceCenterCardTitle => 'Tâm vùng đã chọn';
+
+  @override
+  String get geofenceLatitudeLabel => 'Vĩ độ';
+
+  @override
+  String get geofenceLatitudeHint => 'Ví dụ: 10.776889';
+
+  @override
+  String get geofenceLongitudeLabel => 'Kinh độ';
+
+  @override
+  String get geofenceLongitudeHint => 'Ví dụ: 106.700806';
+
+  @override
+  String get geofenceFormTitle => 'Thông tin geofence';
+
+  @override
+  String get geofenceCenterInputTitle => 'Điều chỉnh tâm tọa độ';
+
+  @override
+  String get geofenceDeviceIdLabel => 'Mã thiết bị';
+
+  @override
+  String get geofenceDeviceIdHint => 'Nhập định danh thiết bị';
+
+  @override
+  String get geofenceApplyCoordinatesAction => 'Cập nhật tâm tọa độ';
+
+  @override
+  String get geofenceInvalidCoordinatesMessage => 'Vui lòng nhập vĩ độ và kinh độ hợp lệ.';
+
+  @override
+  String get geofenceRadiusLabel => 'Bán kính';
+
+  @override
+  String geofenceRadiusValue(int value) {
+    return '$value m';
+  }
+
+  @override
+  String get geofenceBackendStatusLabel => 'Trạng thái backend';
+
+  @override
+  String get geofenceStatusCreated => 'Đã tạo';
+
+  @override
+  String get geofenceStatusUpdated => 'Đã cập nhật';
+
+  @override
+  String get geofenceSaveAction => 'Lưu vùng an toàn';
+
+  @override
+  String get geofenceSavingAction => 'Đang lưu...';
+
+  @override
+  String get geofenceSaveCreated => 'Lưu vùng an toàn thành công.';
+
+  @override
+  String get geofenceSaveUpdated => 'Cập nhật vùng an toàn thành công.';
+
+  @override
+  String get geofenceMapAttribution => 'Dữ liệu bản đồ © OpenStreetMap contributors';
 
   @override
   String signedInAs(String email) {

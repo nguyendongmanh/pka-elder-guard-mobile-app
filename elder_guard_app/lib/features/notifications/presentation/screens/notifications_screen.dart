@@ -57,7 +57,9 @@ class NotificationsScreen extends ConsumerWidget {
           context,
           notificationCenter.notifications,
           onTapNotification: (notificationId) {
-            notificationCenterController.markAsRead(notificationId);
+            notificationCenterController.requestOpenNotification(
+              notificationId,
+            );
           },
         ),
       );

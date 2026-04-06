@@ -29,10 +29,12 @@ Future<void> main() async {
     ),
   );
 
-  unawaited(_initializeServices(
-    oneSignalService: oneSignalService,
-    deviceNotificationService: deviceNotificationService,
-  ));
+  unawaited(
+    _initializeServices(
+      oneSignalService: oneSignalService,
+      deviceNotificationService: deviceNotificationService,
+    ),
+  );
 }
 
 Future<void> _initializeServices({

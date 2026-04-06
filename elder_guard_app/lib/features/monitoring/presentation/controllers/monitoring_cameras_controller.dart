@@ -10,25 +10,64 @@ class MonitoringCamerasState {
   const MonitoringCamerasState({
     required this.cameras,
     required this.nextCameraNumber,
+    this.selectedCameraId,
   });
 
   factory MonitoringCamerasState.initial() {
     return MonitoringCamerasState(
-      cameras: List<DemoCameraItem>.generate(
-        4,
-        (index) => DemoCameraItem(id: index + 1, name: 'Camera ${index + 1}'),
-      ),
+      cameras: _defaultDemoCameras(),
       nextCameraNumber: 5,
     );
   }
 
   final List<DemoCameraItem> cameras;
   final int nextCameraNumber;
+  final int? selectedCameraId;
+
+  DemoCameraItem? get selectedCamera {
+    final selectedCameraId = this.selectedCameraId;
+    if (selectedCameraId == null) {
+      return null;
+    }
+
+    for (final camera in cameras) {
+      if (camera.id == selectedCameraId) {
+        return camera;
+      }
+    }
+
+    return null;
+  }
+
+  static List<DemoCameraItem> _defaultDemoCameras() {
+    return List<DemoCameraItem>.generate(
+      4,
+      (index) => DemoCameraItem(id: index + 1, name: 'Camera ${index + 1}'),
+    );
+  }
 }
 
 class MonitoringCamerasController extends Notifier<MonitoringCamerasState> {
   @override
   MonitoringCamerasState build() => MonitoringCamerasState.initial();
+
+  Future<void> refreshCameraOrder() async {
+    final refreshedCameras = state.cameras
+        .map((camera) => camera.copyWith(highlightedByAlert: false))
+        .toList(growable: false)
+      ..sort((left, right) => left.id.compareTo(right.id));
+
+    state = MonitoringCamerasState(
+      cameras:
+          refreshedCameras.isEmpty
+              ? MonitoringCamerasState._defaultDemoCameras()
+              : refreshedCameras,
+      nextCameraNumber: state.nextCameraNumber,
+      selectedCameraId: null,
+    );
+
+    await Future<void>.delayed(const Duration(milliseconds: 250));
+  }
 
   void addCamera({required String name}) {
     final cameraNumber = state.nextCameraNumber;
@@ -41,6 +80,7 @@ class MonitoringCamerasController extends Notifier<MonitoringCamerasState> {
         ),
       ],
       nextCameraNumber: cameraNumber + 1,
+      selectedCameraId: state.selectedCameraId,
     );
   }
 
@@ -60,15 +100,65 @@ class MonitoringCamerasController extends Notifier<MonitoringCamerasState> {
           )
           .toList(growable: false),
       nextCameraNumber: state.nextCameraNumber,
+      selectedCameraId: state.selectedCameraId,
     );
   }
 
   void deleteCamera(int cameraId) {
+    final remainingCameras = state.cameras
+        .where((camera) => camera.id != cameraId)
+        .map((camera) => camera.copyWith(highlightedByAlert: false))
+        .toList(growable: false);
+    if (remainingCameras.isEmpty) {
+      state = MonitoringCamerasState.initial();
+      return;
+    }
+
+    state = MonitoringCamerasState(
+      cameras: remainingCameras,
+      nextCameraNumber: state.nextCameraNumber,
+      selectedCameraId:
+          state.selectedCameraId == cameraId ? null : state.selectedCameraId,
+    );
+  }
+
+  void focusCamera(int cameraId) {
+    final nextCameraNumber =
+        state.nextCameraNumber > cameraId
+            ? state.nextCameraNumber
+            : cameraId + 1;
+    final reorderedCameras = state.cameras
+        .where((camera) => camera.id != cameraId)
+        .map((camera) => camera.copyWith(highlightedByAlert: false))
+        .toList(growable: true);
+    DemoCameraItem? existingCamera;
+    for (final camera in state.cameras) {
+      if (camera.id == cameraId) {
+        existingCamera = camera;
+        break;
+      }
+    }
+
+    reorderedCameras.insert(
+      0,
+      (existingCamera ?? DemoCameraItem(id: cameraId, name: 'Camera $cameraId'))
+          .copyWith(highlightedByAlert: true),
+    );
+
+    state = MonitoringCamerasState(
+      cameras: reorderedCameras,
+      nextCameraNumber: nextCameraNumber,
+      selectedCameraId: cameraId,
+    );
+  }
+
+  void clearFocusedCamera() {
     state = MonitoringCamerasState(
       cameras: state.cameras
-          .where((camera) => camera.id != cameraId)
+          .map((camera) => camera.copyWith(highlightedByAlert: false))
           .toList(growable: false),
       nextCameraNumber: state.nextCameraNumber,
+      selectedCameraId: null,
     );
   }
 

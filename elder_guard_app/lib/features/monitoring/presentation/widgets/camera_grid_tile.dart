@@ -8,12 +8,14 @@ enum CameraTileMenuAction { rename, delete }
 class CameraGridTile extends StatelessWidget {
   const CameraGridTile({
     required this.camera,
+    required this.isHighlighted,
     required this.onTap,
     required this.onSelectedAction,
     super.key,
   });
 
   final DemoCameraItem camera;
+  final bool isHighlighted;
   final VoidCallback onTap;
   final ValueChanged<CameraTileMenuAction> onSelectedAction;
 
@@ -31,12 +33,19 @@ class CameraGridTile extends StatelessWidget {
             color: Colors.white.withValues(alpha: 0.88),
             borderRadius: BorderRadius.circular(24),
             border: Border.all(
-              color: AppColors.tealPrimary.withValues(alpha: 0.14),
+              color:
+                  isHighlighted
+                      ? AppColors.notificationBlue.withValues(alpha: 0.6)
+                      : AppColors.tealPrimary.withValues(alpha: 0.14),
+              width: isHighlighted ? 1.8 : 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.deepTeal.withValues(alpha: 0.08),
-                blurRadius: 18,
+                color: (isHighlighted
+                        ? AppColors.notificationBlue
+                        : AppColors.deepTeal)
+                    .withValues(alpha: isHighlighted ? 0.16 : 0.08),
+                blurRadius: isHighlighted ? 22 : 18,
                 offset: const Offset(0, 10),
               ),
             ],
@@ -58,11 +67,16 @@ class CameraGridTile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        l10n.monitoringDemoBadge,
+                        isHighlighted
+                            ? l10n.monitoringHighlightedBadge
+                            : l10n.monitoringDemoBadge,
                         style: Theme.of(
                           context,
                         ).textTheme.labelMedium?.copyWith(
-                          color: AppColors.error,
+                          color:
+                              isHighlighted
+                                  ? AppColors.notificationBlue
+                                  : AppColors.error,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -126,17 +140,6 @@ class CameraGridTile extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppColors.deepTeal,
                     fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  l10n.monitoringTapToView,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppColors.textDark.withValues(alpha: 0.72),
-                    fontWeight: FontWeight.w700,
-                    height: 1.3,
                   ),
                 ),
               ],

@@ -32,6 +32,19 @@
   "unknownErrorMessage": "Something went wrong. Please try again.",
   "homeTitle": "Welcome back",
   "homeSubtitle": "You are signed in and ready to call protected APIs.",
+  "homeServicesTitle": "Care control center",
+  "homeServicesSubtitle": "Choose a service to configure safety zones, monitoring, and daily care demos.",
+  "homeServicesSectionTitle": "Services",
+  "homeServicesDemoHint": "Tap any tile to open a flow or a demo action.",
+  "homeServiceSafeZoneTitle": "Safe zone setup",
+  "homeServiceSafeZoneSubtitle": "Pick a center point on the map and define the allowed radius.",
+  "homeServiceMonitoringSubtitle": "Open the camera monitoring demo screen.",
+  "homeServiceNotificationsSubtitle": "Review push alerts received on this device.",
+  "homeServiceHealthProfileSubtitle": "Open the elder health profile demo.",
+  "homeServiceMedicationTitle": "Medication reminders",
+  "homeServiceMedicationSubtitle": "Demo daily reminder schedules for the elder.",
+  "homeServiceFamilyTitle": "Family contacts",
+  "homeServiceFamilySubtitle": "Quick access to trusted relatives and caregivers.",
   "navHome": "Home",
   "navMonitoring": "Monitoring",
   "navAlerts": "Alerts",
@@ -59,14 +72,40 @@
   "monitoringEditCameraTitle": "Rename camera",
   "monitoringCameraNameLabel": "Camera name",
   "monitoringCameraNameHint": "Enter a camera name",
+  "monitoringCameraIdLabel": "Camera ID",
+  "monitoringCameraModeLabel": "Mode",
+  "monitoringCameraModeDemo": "Demo without live video",
+  "monitoringCameraStatusLabel": "Status",
+  "monitoringCameraStatusNormal": "Normal monitoring",
+  "monitoringCameraStatusAlert": "Alert active",
+  "monitoringCameraDetailTitle": "Camera details",
+  "monitoringRecentActivityTitle": "Recent activity",
+  "monitoringRecentEventLabel": "Latest event",
+  "monitoringRecentTimeLabel": "Time",
+  "monitoringRecentTimeUnavailable": "No data yet",
+  "monitoringCameraAlertTitle": "Backend alert",
+  "monitoringEventFall": "Fall detected",
+  "monitoringEventViolence": "Violence detected",
+  "monitoringEventImmobile": "Immobile detected",
+  "monitoringEventNoData": "No event yet",
   "monitoringCancelAction": "Cancel",
   "monitoringSaveAction": "Save",
   "monitoringRenameAction": "Rename",
   "monitoringDeleteAction": "Delete camera",
   "monitoringDemoBadge": "DEMO",
+  "monitoringHighlightedBadge": "ALERT",
   "monitoringTapToView": "Demo camera widget, no live video.",
   "monitoringDemoTapMessage": "{cameraName} is currently only a demo widget.",
   "@monitoringDemoTapMessage": {
+    "placeholders": {
+      "cameraName": {
+        "type": "String"
+      }
+    }
+  },
+  "monitoringFocusedCameraTitle": "Opened from alert",
+  "monitoringFocusedCameraMessage": "The app navigated to {cameraName} from a backend notification.",
+  "@monitoringFocusedCameraMessage": {
     "placeholders": {
       "cameraName": {
         "type": "String"
@@ -227,6 +266,38 @@
   "notificationFieldEventType": "Event type",
   "notificationFieldConfidence": "Confidence",
   "notificationFieldTimestamp": "Timestamp",
+  "geofenceScreenTitle": "Safe zone setup",
+  "geofenceScreenSubtitle": "Tap the map to choose the anchor coordinate, then adjust the radius before sending it to the backend.",
+  "geofenceMapTitle": "Demo map",
+  "geofenceMapHint": "Tap anywhere on the map to update the center coordinate.",
+  "geofenceCenterCardTitle": "Selected center",
+  "geofenceLatitudeLabel": "Latitude",
+  "geofenceLatitudeHint": "Example: 10.776889",
+  "geofenceLongitudeLabel": "Longitude",
+  "geofenceLongitudeHint": "Example: 106.700806",
+  "geofenceFormTitle": "Geofence details",
+  "geofenceCenterInputTitle": "Adjust center coordinate",
+  "geofenceDeviceIdLabel": "Device ID",
+  "geofenceDeviceIdHint": "Enter a device identifier",
+  "geofenceApplyCoordinatesAction": "Apply center coordinate",
+  "geofenceInvalidCoordinatesMessage": "Please enter a valid latitude and longitude.",
+  "geofenceRadiusLabel": "Radius",
+  "geofenceRadiusValue": "{value} m",
+  "@geofenceRadiusValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "geofenceBackendStatusLabel": "Backend status",
+  "geofenceStatusCreated": "Created",
+  "geofenceStatusUpdated": "Updated",
+  "geofenceSaveAction": "Save safe zone",
+  "geofenceSavingAction": "Saving...",
+  "geofenceSaveCreated": "Safe zone saved successfully.",
+  "geofenceSaveUpdated": "Safe zone updated successfully.",
+  "geofenceMapAttribution": "Map data © OpenStreetMap contributors",
   "signedInAs": "Signed in as {email}",
   "@signedInAs": {
     "placeholders": {

@@ -29,6 +29,19 @@
   "unknownErrorMessage": "Đã xảy ra lỗi. Vui lòng thử lại.",
   "homeTitle": "Chào mừng quay lại",
   "homeSubtitle": "Bạn đã đăng nhập và sẵn sàng gọi các API cần xác thực.",
+  "homeServicesTitle": "Trung tâm điều phối chăm sóc",
+  "homeServicesSubtitle": "Chọn một tiện ích để cấu hình vùng an toàn, giám sát và các luồng chăm sóc dạng demo.",
+  "homeServicesSectionTitle": "Dịch vụ",
+  "homeServicesDemoHint": "Nhấn vào từng ô để mở màn hình hoặc thao tác demo.",
+  "homeServiceSafeZoneTitle": "Thiết lập vùng an toàn",
+  "homeServiceSafeZoneSubtitle": "Chọn tâm tọa độ trên bản đồ và đặt bán kính cho phép.",
+  "homeServiceMonitoringSubtitle": "Mở nhanh màn hình giám sát camera demo.",
+  "homeServiceNotificationsSubtitle": "Xem các cảnh báo push đã nhận trên thiết bị này.",
+  "homeServiceHealthProfileSubtitle": "Mở hồ sơ sức khỏe người dùng dạng demo.",
+  "homeServiceMedicationTitle": "Nhắc uống thuốc",
+  "homeServiceMedicationSubtitle": "Demo lịch nhắc uống thuốc hằng ngày cho người cao tuổi.",
+  "homeServiceFamilyTitle": "Liên hệ gia đình",
+  "homeServiceFamilySubtitle": "Truy cập nhanh người thân và người chăm sóc tin cậy.",
   "navHome": "Trang chủ",
   "navMonitoring": "Giám sát",
   "navAlerts": "Cảnh báo",
@@ -56,14 +69,40 @@
   "monitoringEditCameraTitle": "Đổi tên camera",
   "monitoringCameraNameLabel": "Tên camera",
   "monitoringCameraNameHint": "Nhập tên camera",
+  "monitoringCameraIdLabel": "Mã camera",
+  "monitoringCameraModeLabel": "Chế độ",
+  "monitoringCameraModeDemo": "Demo không phát video",
+  "monitoringCameraStatusLabel": "Trạng thái",
+  "monitoringCameraStatusNormal": "Theo dõi bình thường",
+  "monitoringCameraStatusAlert": "Đang có cảnh báo",
+  "monitoringCameraDetailTitle": "Chi tiết camera",
+  "monitoringRecentActivityTitle": "Hoạt động gần đây",
+  "monitoringRecentEventLabel": "Sự kiện gần nhất",
+  "monitoringRecentTimeLabel": "Thời điểm",
+  "monitoringRecentTimeUnavailable": "Chưa có dữ liệu",
+  "monitoringCameraAlertTitle": "Cảnh báo từ backend",
+  "monitoringEventFall": "Té ngã",
+  "monitoringEventViolence": "Bạo lực",
+  "monitoringEventImmobile": "Bất động",
+  "monitoringEventNoData": "Chưa có sự kiện",
   "monitoringCancelAction": "Hủy",
   "monitoringSaveAction": "Lưu",
   "monitoringRenameAction": "Sửa tên",
   "monitoringDeleteAction": "Xóa camera",
   "monitoringDemoBadge": "DEMO",
+  "monitoringHighlightedBadge": "ĐANG CẢNH BÁO",
   "monitoringTapToView": "Widget camera demo, không phát video.",
   "monitoringDemoTapMessage": "{cameraName} hiện chỉ là widget demo.",
   "@monitoringDemoTapMessage": {
+    "placeholders": {
+      "cameraName": {
+        "type": "String"
+      }
+    }
+  },
+  "monitoringFocusedCameraTitle": "Đang mở camera theo cảnh báo",
+  "monitoringFocusedCameraMessage": "Hệ thống vừa điều hướng đến {cameraName} từ thông báo backend.",
+  "@monitoringFocusedCameraMessage": {
     "placeholders": {
       "cameraName": {
         "type": "String"
@@ -224,6 +263,38 @@
   "notificationFieldEventType": "Loại sự kiện",
   "notificationFieldConfidence": "Độ tin cậy",
   "notificationFieldTimestamp": "Thời gian",
+  "geofenceScreenTitle": "Thiết lập vùng an toàn",
+  "geofenceScreenSubtitle": "Nhấn lên bản đồ để chọn tọa độ tâm, sau đó chỉnh bán kính trước khi gửi dữ liệu lên backend.",
+  "geofenceMapTitle": "Bản đồ demo",
+  "geofenceMapHint": "Nhấn vào vị trí bất kỳ trên bản đồ để cập nhật tâm tọa độ.",
+  "geofenceCenterCardTitle": "Tâm vùng đã chọn",
+  "geofenceLatitudeLabel": "Vĩ độ",
+  "geofenceLatitudeHint": "Ví dụ: 10.776889",
+  "geofenceLongitudeLabel": "Kinh độ",
+  "geofenceLongitudeHint": "Ví dụ: 106.700806",
+  "geofenceFormTitle": "Thông tin geofence",
+  "geofenceCenterInputTitle": "Điều chỉnh tâm tọa độ",
+  "geofenceDeviceIdLabel": "Mã thiết bị",
+  "geofenceDeviceIdHint": "Nhập định danh thiết bị",
+  "geofenceApplyCoordinatesAction": "Cập nhật tâm tọa độ",
+  "geofenceInvalidCoordinatesMessage": "Vui lòng nhập vĩ độ và kinh độ hợp lệ.",
+  "geofenceRadiusLabel": "Bán kính",
+  "geofenceRadiusValue": "{value} m",
+  "@geofenceRadiusValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "geofenceBackendStatusLabel": "Trạng thái backend",
+  "geofenceStatusCreated": "Đã tạo",
+  "geofenceStatusUpdated": "Đã cập nhật",
+  "geofenceSaveAction": "Lưu vùng an toàn",
+  "geofenceSavingAction": "Đang lưu...",
+  "geofenceSaveCreated": "Lưu vùng an toàn thành công.",
+  "geofenceSaveUpdated": "Cập nhật vùng an toàn thành công.",
+  "geofenceMapAttribution": "Dữ liệu bản đồ © OpenStreetMap contributors",
   "signedInAs": "Đăng nhập với {email}",
   "@signedInAs": {
     "placeholders": {

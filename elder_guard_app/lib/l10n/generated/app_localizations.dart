@@ -269,6 +269,84 @@ abstract class AppLocalizations {
   /// **'You are signed in and ready to call protected APIs.'**
   String get homeSubtitle;
 
+  /// No description provided for @homeServicesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Care control center'**
+  String get homeServicesTitle;
+
+  /// No description provided for @homeServicesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a service to configure safety zones, monitoring, and daily care demos.'**
+  String get homeServicesSubtitle;
+
+  /// No description provided for @homeServicesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get homeServicesSectionTitle;
+
+  /// No description provided for @homeServicesDemoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any tile to open a flow or a demo action.'**
+  String get homeServicesDemoHint;
+
+  /// No description provided for @homeServiceSafeZoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe zone setup'**
+  String get homeServiceSafeZoneTitle;
+
+  /// No description provided for @homeServiceSafeZoneSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a center point on the map and define the allowed radius.'**
+  String get homeServiceSafeZoneSubtitle;
+
+  /// No description provided for @homeServiceMonitoringSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the camera monitoring demo screen.'**
+  String get homeServiceMonitoringSubtitle;
+
+  /// No description provided for @homeServiceNotificationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review push alerts received on this device.'**
+  String get homeServiceNotificationsSubtitle;
+
+  /// No description provided for @homeServiceHealthProfileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the elder health profile demo.'**
+  String get homeServiceHealthProfileSubtitle;
+
+  /// No description provided for @homeServiceMedicationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication reminders'**
+  String get homeServiceMedicationTitle;
+
+  /// No description provided for @homeServiceMedicationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo daily reminder schedules for the elder.'**
+  String get homeServiceMedicationSubtitle;
+
+  /// No description provided for @homeServiceFamilyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family contacts'**
+  String get homeServiceFamilyTitle;
+
+  /// No description provided for @homeServiceFamilySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick access to trusted relatives and caregivers.'**
+  String get homeServiceFamilySubtitle;
+
   /// No description provided for @navHome.
   ///
   /// In en, this message translates to:
@@ -347,6 +425,102 @@ abstract class AppLocalizations {
   /// **'Enter a camera name'**
   String get monitoringCameraNameHint;
 
+  /// No description provided for @monitoringCameraIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera ID'**
+  String get monitoringCameraIdLabel;
+
+  /// No description provided for @monitoringCameraModeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mode'**
+  String get monitoringCameraModeLabel;
+
+  /// No description provided for @monitoringCameraModeDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo without live video'**
+  String get monitoringCameraModeDemo;
+
+  /// No description provided for @monitoringCameraStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get monitoringCameraStatusLabel;
+
+  /// No description provided for @monitoringCameraStatusNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal monitoring'**
+  String get monitoringCameraStatusNormal;
+
+  /// No description provided for @monitoringCameraStatusAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert active'**
+  String get monitoringCameraStatusAlert;
+
+  /// No description provided for @monitoringCameraDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera details'**
+  String get monitoringCameraDetailTitle;
+
+  /// No description provided for @monitoringRecentActivityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent activity'**
+  String get monitoringRecentActivityTitle;
+
+  /// No description provided for @monitoringRecentEventLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest event'**
+  String get monitoringRecentEventLabel;
+
+  /// No description provided for @monitoringRecentTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get monitoringRecentTimeLabel;
+
+  /// No description provided for @monitoringRecentTimeUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No data yet'**
+  String get monitoringRecentTimeUnavailable;
+
+  /// No description provided for @monitoringCameraAlertTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backend alert'**
+  String get monitoringCameraAlertTitle;
+
+  /// No description provided for @monitoringEventFall.
+  ///
+  /// In en, this message translates to:
+  /// **'Fall detected'**
+  String get monitoringEventFall;
+
+  /// No description provided for @monitoringEventViolence.
+  ///
+  /// In en, this message translates to:
+  /// **'Violence detected'**
+  String get monitoringEventViolence;
+
+  /// No description provided for @monitoringEventImmobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Immobile detected'**
+  String get monitoringEventImmobile;
+
+  /// No description provided for @monitoringEventNoData.
+  ///
+  /// In en, this message translates to:
+  /// **'No event yet'**
+  String get monitoringEventNoData;
+
   /// No description provided for @monitoringCancelAction.
   ///
   /// In en, this message translates to:
@@ -377,6 +551,12 @@ abstract class AppLocalizations {
   /// **'DEMO'**
   String get monitoringDemoBadge;
 
+  /// No description provided for @monitoringHighlightedBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'ALERT'**
+  String get monitoringHighlightedBadge;
+
   /// No description provided for @monitoringTapToView.
   ///
   /// In en, this message translates to:
@@ -388,6 +568,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{cameraName} is currently only a demo widget.'**
   String monitoringDemoTapMessage(String cameraName);
+
+  /// No description provided for @monitoringFocusedCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Opened from alert'**
+  String get monitoringFocusedCameraTitle;
+
+  /// No description provided for @monitoringFocusedCameraMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The app navigated to {cameraName} from a backend notification.'**
+  String monitoringFocusedCameraMessage(String cameraName);
 
   /// No description provided for @monitoringEmptyTitle.
   ///
@@ -880,6 +1072,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Timestamp'**
   String get notificationFieldTimestamp;
+
+  /// No description provided for @geofenceScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe zone setup'**
+  String get geofenceScreenTitle;
+
+  /// No description provided for @geofenceScreenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the map to choose the anchor coordinate, then adjust the radius before sending it to the backend.'**
+  String get geofenceScreenSubtitle;
+
+  /// No description provided for @geofenceMapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo map'**
+  String get geofenceMapTitle;
+
+  /// No description provided for @geofenceMapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap anywhere on the map to update the center coordinate.'**
+  String get geofenceMapHint;
+
+  /// No description provided for @geofenceCenterCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected center'**
+  String get geofenceCenterCardTitle;
+
+  /// No description provided for @geofenceLatitudeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude'**
+  String get geofenceLatitudeLabel;
+
+  /// No description provided for @geofenceLatitudeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Example: 10.776889'**
+  String get geofenceLatitudeHint;
+
+  /// No description provided for @geofenceLongitudeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Longitude'**
+  String get geofenceLongitudeLabel;
+
+  /// No description provided for @geofenceLongitudeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Example: 106.700806'**
+  String get geofenceLongitudeHint;
+
+  /// No description provided for @geofenceFormTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Geofence details'**
+  String get geofenceFormTitle;
+
+  /// No description provided for @geofenceCenterInputTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust center coordinate'**
+  String get geofenceCenterInputTitle;
+
+  /// No description provided for @geofenceDeviceIdLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Device ID'**
+  String get geofenceDeviceIdLabel;
+
+  /// No description provided for @geofenceDeviceIdHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a device identifier'**
+  String get geofenceDeviceIdHint;
+
+  /// No description provided for @geofenceApplyCoordinatesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply center coordinate'**
+  String get geofenceApplyCoordinatesAction;
+
+  /// No description provided for @geofenceInvalidCoordinatesMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid latitude and longitude.'**
+  String get geofenceInvalidCoordinatesMessage;
+
+  /// No description provided for @geofenceRadiusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Radius'**
+  String get geofenceRadiusLabel;
+
+  /// No description provided for @geofenceRadiusValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} m'**
+  String geofenceRadiusValue(int value);
+
+  /// No description provided for @geofenceBackendStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Backend status'**
+  String get geofenceBackendStatusLabel;
+
+  /// No description provided for @geofenceStatusCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Created'**
+  String get geofenceStatusCreated;
+
+  /// No description provided for @geofenceStatusUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated'**
+  String get geofenceStatusUpdated;
+
+  /// No description provided for @geofenceSaveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save safe zone'**
+  String get geofenceSaveAction;
+
+  /// No description provided for @geofenceSavingAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving...'**
+  String get geofenceSavingAction;
+
+  /// No description provided for @geofenceSaveCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe zone saved successfully.'**
+  String get geofenceSaveCreated;
+
+  /// No description provided for @geofenceSaveUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Safe zone updated successfully.'**
+  String get geofenceSaveUpdated;
+
+  /// No description provided for @geofenceMapAttribution.
+  ///
+  /// In en, this message translates to:
+  /// **'Map data © OpenStreetMap contributors'**
+  String get geofenceMapAttribution;
 
   /// No description provided for @signedInAs.
   ///

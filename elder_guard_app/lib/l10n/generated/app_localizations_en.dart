@@ -96,6 +96,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeSubtitle => 'You are signed in and ready to call protected APIs.';
 
   @override
+  String get homeServicesTitle => 'Care control center';
+
+  @override
+  String get homeServicesSubtitle => 'Choose a service to configure safety zones, monitoring, and daily care demos.';
+
+  @override
+  String get homeServicesSectionTitle => 'Services';
+
+  @override
+  String get homeServicesDemoHint => 'Tap any tile to open a flow or a demo action.';
+
+  @override
+  String get homeServiceSafeZoneTitle => 'Safe zone setup';
+
+  @override
+  String get homeServiceSafeZoneSubtitle => 'Pick a center point on the map and define the allowed radius.';
+
+  @override
+  String get homeServiceMonitoringSubtitle => 'Open the camera monitoring demo screen.';
+
+  @override
+  String get homeServiceNotificationsSubtitle => 'Review push alerts received on this device.';
+
+  @override
+  String get homeServiceHealthProfileSubtitle => 'Open the elder health profile demo.';
+
+  @override
+  String get homeServiceMedicationTitle => 'Medication reminders';
+
+  @override
+  String get homeServiceMedicationSubtitle => 'Demo daily reminder schedules for the elder.';
+
+  @override
+  String get homeServiceFamilyTitle => 'Family contacts';
+
+  @override
+  String get homeServiceFamilySubtitle => 'Quick access to trusted relatives and caregivers.';
+
+  @override
   String get navHome => 'Home';
 
   @override
@@ -139,6 +178,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get monitoringCameraNameHint => 'Enter a camera name';
 
   @override
+  String get monitoringCameraIdLabel => 'Camera ID';
+
+  @override
+  String get monitoringCameraModeLabel => 'Mode';
+
+  @override
+  String get monitoringCameraModeDemo => 'Demo without live video';
+
+  @override
+  String get monitoringCameraStatusLabel => 'Status';
+
+  @override
+  String get monitoringCameraStatusNormal => 'Normal monitoring';
+
+  @override
+  String get monitoringCameraStatusAlert => 'Alert active';
+
+  @override
+  String get monitoringCameraDetailTitle => 'Camera details';
+
+  @override
+  String get monitoringRecentActivityTitle => 'Recent activity';
+
+  @override
+  String get monitoringRecentEventLabel => 'Latest event';
+
+  @override
+  String get monitoringRecentTimeLabel => 'Time';
+
+  @override
+  String get monitoringRecentTimeUnavailable => 'No data yet';
+
+  @override
+  String get monitoringCameraAlertTitle => 'Backend alert';
+
+  @override
+  String get monitoringEventFall => 'Fall detected';
+
+  @override
+  String get monitoringEventViolence => 'Violence detected';
+
+  @override
+  String get monitoringEventImmobile => 'Immobile detected';
+
+  @override
+  String get monitoringEventNoData => 'No event yet';
+
+  @override
   String get monitoringCancelAction => 'Cancel';
 
   @override
@@ -154,11 +241,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get monitoringDemoBadge => 'DEMO';
 
   @override
+  String get monitoringHighlightedBadge => 'ALERT';
+
+  @override
   String get monitoringTapToView => 'Demo camera widget, no live video.';
 
   @override
   String monitoringDemoTapMessage(String cameraName) {
     return '$cameraName is currently only a demo widget.';
+  }
+
+  @override
+  String get monitoringFocusedCameraTitle => 'Opened from alert';
+
+  @override
+  String monitoringFocusedCameraMessage(String cameraName) {
+    return 'The app navigated to $cameraName from a backend notification.';
   }
 
   @override
@@ -424,6 +522,83 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notificationFieldTimestamp => 'Timestamp';
+
+  @override
+  String get geofenceScreenTitle => 'Safe zone setup';
+
+  @override
+  String get geofenceScreenSubtitle => 'Tap the map to choose the anchor coordinate, then adjust the radius before sending it to the backend.';
+
+  @override
+  String get geofenceMapTitle => 'Demo map';
+
+  @override
+  String get geofenceMapHint => 'Tap anywhere on the map to update the center coordinate.';
+
+  @override
+  String get geofenceCenterCardTitle => 'Selected center';
+
+  @override
+  String get geofenceLatitudeLabel => 'Latitude';
+
+  @override
+  String get geofenceLatitudeHint => 'Example: 10.776889';
+
+  @override
+  String get geofenceLongitudeLabel => 'Longitude';
+
+  @override
+  String get geofenceLongitudeHint => 'Example: 106.700806';
+
+  @override
+  String get geofenceFormTitle => 'Geofence details';
+
+  @override
+  String get geofenceCenterInputTitle => 'Adjust center coordinate';
+
+  @override
+  String get geofenceDeviceIdLabel => 'Device ID';
+
+  @override
+  String get geofenceDeviceIdHint => 'Enter a device identifier';
+
+  @override
+  String get geofenceApplyCoordinatesAction => 'Apply center coordinate';
+
+  @override
+  String get geofenceInvalidCoordinatesMessage => 'Please enter a valid latitude and longitude.';
+
+  @override
+  String get geofenceRadiusLabel => 'Radius';
+
+  @override
+  String geofenceRadiusValue(int value) {
+    return '$value m';
+  }
+
+  @override
+  String get geofenceBackendStatusLabel => 'Backend status';
+
+  @override
+  String get geofenceStatusCreated => 'Created';
+
+  @override
+  String get geofenceStatusUpdated => 'Updated';
+
+  @override
+  String get geofenceSaveAction => 'Save safe zone';
+
+  @override
+  String get geofenceSavingAction => 'Saving...';
+
+  @override
+  String get geofenceSaveCreated => 'Safe zone saved successfully.';
+
+  @override
+  String get geofenceSaveUpdated => 'Safe zone updated successfully.';
+
+  @override
+  String get geofenceMapAttribution => 'Map data © OpenStreetMap contributors';
 
   @override
   String signedInAs(String email) {

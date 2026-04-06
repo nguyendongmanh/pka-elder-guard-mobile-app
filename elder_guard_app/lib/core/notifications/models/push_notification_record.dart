@@ -21,6 +21,41 @@ class PushNotificationRecord {
   final bool opened;
   final bool isRead;
 
+  int? get cameraId {
+    final directCameraId = _readInt(
+      additionalData['camera_id'] ?? additionalData['cameraId'],
+    );
+    if (directCameraId != null) {
+      return directCameraId;
+    }
+
+    return _extractCameraIdFromText('$title $body');
+  }
+
+  String? get eventType {
+    final directEventType = _normalizeString(
+      additionalData['event_type'] ?? additionalData['eventType'],
+    );
+    if (directEventType != null) {
+      return directEventType;
+    }
+
+    final combinedText = '$title $body'.toLowerCase();
+    if (combinedText.contains('fall') || combinedText.contains('té ngã')) {
+      return 'fall_detected';
+    }
+    if (combinedText.contains('violence') || combinedText.contains('bạo lực')) {
+      return 'violence_detected';
+    }
+    if (combinedText.contains('imobile') || combinedText.contains('bất động')) {
+      return 'imobile_detected';
+    }
+
+    return null;
+  }
+
+  bool get hasCameraContext => cameraId != null;
+
   factory PushNotificationRecord.fromJson(Map<String, dynamic> json) {
     final sourceName = json['source'] as String?;
     final source = PushNotificationSource.values.firstWhere(
@@ -80,5 +115,36 @@ class PushNotificationRecord {
       'opened': opened,
       'isRead': isRead,
     };
+  }
+
+  static int? _readInt(dynamic value) {
+    if (value is int) {
+      return value;
+    }
+    if (value is String) {
+      return int.tryParse(value.trim());
+    }
+    return null;
+  }
+
+  static String? _normalizeString(dynamic value) {
+    if (value is! String) {
+      return null;
+    }
+
+    final trimmed = value.trim();
+    return trimmed.isEmpty ? null : trimmed;
+  }
+
+  static int? _extractCameraIdFromText(String text) {
+    final match = RegExp(
+      r'camera\s+(\d+)',
+      caseSensitive: false,
+    ).firstMatch(text);
+    if (match == null) {
+      return null;
+    }
+
+    return int.tryParse(match.group(1) ?? '');
   }
 }
