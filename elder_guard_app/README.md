@@ -1,16 +1,31 @@
 # elder_guard_app
 
-A new Flutter project.
+Flutter app cho dự án `Elder Guard Mobile App`.
 
-## Getting Started
+Tài liệu chính của mobile repo nằm tại:
 
-This project is a starting point for a Flutter application.
+[`../README.md`](../README.md)
 
-A few resources to get you started if this is your first Flutter project:
+## Chạy nhanh
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+flutter pub get
+flutter gen-l10n
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Lệnh kiểm tra
+
+```bash
+flutter analyze
+dart format lib
+```
+
+## Ghi chú
+
+- App hiện ưu tiên Android.
+- Base URL backend có thể override bằng:
+
+```bash
+flutter run --dart-define=API_BASE_URL=https://your-domain/PKA_ElderGuard
+```

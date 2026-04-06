@@ -1,70 +1,195 @@
 # Elder Guard Mobile App
 
-Ứng dụng di động `Elder Guard` đang được phát triển bằng Flutter. Hiện tại dự án ưu tiên Android, đã có cấu hình tên app, icon app, asset logo và nền tảng localization để tiếp tục mở rộng các màn hình chức năng.
+Ứng dụng di động `Elder Guard` được phát triển bằng Flutter, ưu tiên Android, và đang được dùng như app demo cho các luồng chăm sóc người cao tuổi: đăng nhập, vùng an toàn, giám sát camera demo, nhận cảnh báo push từ backend và điều hướng theo sự kiện.
 
 ## Trạng thái hiện tại
 
-- Đã khởi tạo project Flutter trong thư mục `elder_guard_app`.
-- Đã cấu hình app name trên Android là `Elder Guard`.
-- Đã cấu hình launcher icon Android từ logo trong `assets/elderguard_logoapp.png`.
-- Đã thêm hệ thống localization với 2 ngôn ngữ `en` và `vi`.
-- Đã generate file localization từ `l10n.yaml`.
-- Đã khai báo asset trong `pubspec.yaml`.
-- Đã cài sẵn một số thư viện nền để phục vụ các bước phát triển tiếp theo như `flutter_riverpod`, `go_router`, `shared_preferences`, `shimmer`.
+- Đa ngôn ngữ `vi` và `en`.
+- Có luồng đăng nhập/đăng ký và bootstrap session.
+- Trang chủ đã được thay bằng dashboard dịch vụ.
+- Có màn hình thiết lập vùng an toàn với bản đồ demo.
+- Có màn hình giám sát camera demo, trang chi tiết camera và pull-to-refresh.
+- Có trung tâm thông báo push và hỗ trợ mở đúng camera từ cảnh báo backend.
+- Có hồ sơ sức khỏe demo và menu cơ bản.
 
-## Công cụ và thư viện sử dụng
+## Tính năng chính
 
-### Nền tảng chính
+### 1. Trang chủ dạng dashboard
 
-- `Flutter`: framework phát triển ứng dụng đa nền tảng.
-- `Dart`: ngôn ngữ lập trình chính của dự án.
-- `Android`: nền tảng mục tiêu hiện tại.
+- Home hiển thị dạng các ô dịch vụ thay cho UI cũ.
+- Có các mục: `Thiết lập vùng an toàn`, `Giám sát camera`, `Thông báo`, `Hồ sơ sức khỏe`, `Nhắc uống thuốc`, `Liên hệ gia đình`.
+- Nút đổi ngôn ngữ nằm ngay trên thanh đầu trang.
 
-### Packages đã có trong dự án
+### 2. Thiết lập vùng an toàn
 
-- `flutter_localizations`: hỗ trợ đa ngôn ngữ cho ứng dụng Flutter.
-- `intl`: phục vụ localization và xử lý chuỗi theo ngôn ngữ.
-- `flutter_riverpod`: thư viện quản lý state đã được thêm sẵn để dùng cho các màn tiếp theo.
-- `go_router`: thư viện điều hướng.
-- `shared_preferences`: lưu trữ local đơn giản trên thiết bị.
-- `shimmer`: hỗ trợ hiển thị loading skeleton.
-- `flutter_launcher_icons`: dùng để generate app icon Android.
-- `flutter_lints`: bộ lint để giữ code nhất quán và sạch hơn.
+- Mở từ ô `Thiết lập vùng an toàn` ở trang chủ.
+- Dùng `flutter_map` để demo bản đồ.
+- Cho phép chọn tâm tọa độ bằng cách chạm lên bản đồ.
+- Cho phép nhập tay `vĩ độ` và `kinh độ`.
+- Cho phép chỉnh `bán kính` theo mét.
+- Khi bấm lưu, mobile gửi `POST` về backend theo route hiện tại của backend.
 
-## Cấu trúc đáng chú ý
+#### API geofence đang dùng
+
+Route thực tế:
+
+```text
+POST /PKA_ElderGuard/geofences
+```
+
+Body:
+
+```json
+{
+  "device_id": "mobile-123",
+  "anchor_latitude": 10.776889,
+  "anchor_longitude": 106.700806,
+  "radius_meters": 150
+}
+```
+
+Ghi chú:
+
+- Backend đang dùng `anchor_latitude` và `anchor_longitude`.
+- Theo `device_id`, backend sẽ `create` lần đầu và `update` khi gửi lại.
+
+### 3. Giám sát camera demo
+
+- Mỗi camera hiển thị theo 1 hàng.
+- Camera hiện là demo UI, không phát video thật.
+- Hỗ trợ thêm, đổi tên, xóa camera demo.
+- Kéo xuống để refresh lại thứ tự camera theo `id`.
+- Mỗi camera có trang chi tiết riêng.
+- Card camera cuối không bị che bởi bottom nav bar.
+
+### 4. Cảnh báo push và điều hướng theo camera
+
+- Mobile dùng `OneSignal` kết hợp `flutter_local_notifications`.
+- Push được lưu vào inbox local trong app.
+- Có popup in-app khi đang mở ứng dụng.
+- Có màn hình `Thông báo` để xem danh sách cảnh báo đã nhận.
+- Khi backend gửi cảnh báo có `camera_id`, người dùng bấm vào thông báo sẽ mở thẳng trang chi tiết của camera tương ứng.
+
+#### API cảnh báo camera đang dùng
+
+Route thực tế:
+
+```text
+POST /PKA_ElderGuard/events
+```
+
+Body:
+
+```json
+{
+  "camera_id": 3,
+  "timestamp": "2026-04-06T22:10:00",
+  "event_type": "fall_detected",
+  "confidence": 0.97,
+  "url": "demo://camera/3/fall"
+}
+```
+
+Khi `event_type = "fall_detected"`:
+
+- Backend tạo heading: `Cảnh báo té ngã`
+- Backend tạo message: `Phát hiện té ngã tại camera 3`
+- Backend gửi kèm dữ liệu push:
+
+```json
+{
+  "camera_id": 3,
+  "event_type": "fall_detected",
+  "event_id": 123
+}
+```
+
+Điều kiện để mobile mở đúng camera:
+
+- Push nên có `camera_id` trong `data`.
+- Nếu thiếu `camera_id`, mobile chỉ còn fallback parse từ text kiểu `camera 3`.
+- Endpoint `/lost` không có `camera_id`, nên không thể mở thẳng đúng camera.
+
+### 5. Hồ sơ sức khỏe demo
+
+- Có màn hình hồ sơ sức khỏe mô phỏng.
+- Dùng để demo bố cục theo dõi người cao tuổi.
+
+## Cấu trúc thư mục đáng chú ý
 
 ```text
 pka-elder-guard-mobile-app/
 +-- README.md
 +-- elder_guard_app/
     +-- assets/
-    +-- android/
     +-- lib/
+    |   +-- app/
+    |   +-- core/
+    |   +-- features/
+    |   |   +-- auth/
+    |   |   +-- geofence/
+    |   |   +-- health_profile/
+    |   |   +-- home/
+    |   |   +-- menu/
+    |   |   +-- monitoring/
+    |   |   +-- notifications/
     |   +-- l10n/
     |   +-- main.dart
     +-- l10n.yaml
     +-- pubspec.yaml
 ```
 
+## Packages chính
+
+- `flutter_riverpod`: state management.
+- `http`: gọi backend API.
+- `shared_preferences`: lưu local state/session đơn giản.
+- `flutter_secure_storage`: lưu dữ liệu nhạy cảm.
+- `onesignal_flutter`: nhận push notification.
+- `flutter_local_notifications`: hiển thị thông báo hệ thống trong app.
+- `flutter_map`: bản đồ demo cho geofence.
+- `latlong2`: model tọa độ cho bản đồ.
+- `google_fonts`: typography.
+- `intl` và `flutter_localizations`: localization.
+
+## Cấu hình backend URL
+
+App hiện lấy base URL từ:
+
+```text
+lib/core/config/app_config.dart
+```
+
+Mặc định:
+
+```text
+https://jeane-unubiquitous-superprecariously.ngrok-free.dev/PKA_ElderGuard
+```
+
+Có thể override khi chạy app:
+
+```bash
+flutter run --dart-define=API_BASE_URL=https://your-domain/PKA_ElderGuard
+```
+
 ## Cách chạy app
 
-### Yêu cầu môi trường
+### Yêu cầu
 
-- Cài `Flutter SDK`.
-- Có `Android Studio` hoặc Android SDK/ADB để chạy emulator hay thiết bị thật.
-- Máy cần nhận được thiết bị Android qua `flutter devices`.
+- Flutter SDK
+- Android Studio hoặc Android SDK + ADB
+- Thiết bị Android thật hoặc emulator
 
-### Các bước chạy
-
-Từ thư mục gốc của repo:
+### Chạy nhanh
 
 ```bash
 cd elder_guard_app
 flutter pub get
+flutter gen-l10n
 flutter run
 ```
 
-Nếu muốn chỉ định thiết bị Android cụ thể:
+Nếu muốn chỉ định thiết bị:
 
 ```bash
 cd elder_guard_app
@@ -72,7 +197,21 @@ flutter devices
 flutter run -d <device_id>
 ```
 
-## Các lệnh hữu ích
+## Lệnh hữu ích
+
+Kiểm tra mã nguồn:
+
+```bash
+cd elder_guard_app
+flutter analyze
+```
+
+Format mã:
+
+```bash
+cd elder_guard_app
+dart format lib
+```
 
 Generate lại localization:
 
@@ -81,22 +220,17 @@ cd elder_guard_app
 flutter gen-l10n
 ```
 
-Generate lại app icon Android sau khi thay logo:
+Generate launcher icon Android:
 
 ```bash
 cd elder_guard_app
 dart run flutter_launcher_icons
 ```
 
-Kiểm tra nhanh chất lượng mã nguồn:
+## Ghi chú triển khai
 
-```bash
-cd elder_guard_app
-flutter analyze
-```
-
-## Ghi chú
-
-- Dự án hiện mới tập trung cho Android.
-- `flutter_riverpod` đã được thêm vào dependency nhưng chưa triển khai luồng state management cụ thể trong `lib/main.dart`.
-- Màn hình hiện tại vẫn là màn hình khởi tạo cơ bản, phù hợp để tiếp tục phát triển tính năng thực tế ở các bước sau.
+- Ứng dụng hiện ưu tiên Android.
+- Camera chỉ là demo UI, chưa stream video thật.
+- Push alert điều hướng camera đang phụ thuộc vào `camera_id` từ backend.
+- OneSignal cần cấu hình backend đầy đủ để push hoạt động end-to-end.
+- README này phản ánh trạng thái hiện tại của code trong repo mobile.
