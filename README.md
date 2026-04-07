@@ -31,10 +31,16 @@
 
 #### API geofence đang dùng
 
-Route thực tế:
+Route hiện tại:
 
 ```text
 POST /PKA_ElderGuard/geofences
+```
+
+Full URL khi ghép với config mobile:
+
+```text
+{API_BASE_URL}/geofences
 ```
 
 Body:
@@ -72,10 +78,16 @@ Ghi chú:
 
 #### API cảnh báo camera đang dùng
 
-Route thực tế:
+Route hiện tại:
 
 ```text
 POST /PKA_ElderGuard/events
+```
+
+Full URL khi ghép với config mobile:
+
+```text
+{API_BASE_URL}/events
 ```
 
 Body:
@@ -160,13 +172,36 @@ App hiện lấy base URL từ:
 lib/core/config/app_config.dart
 ```
 
-Mặc định:
+Biến URL đang dùng ở mobile:
+
+```text
+API_BASE_URL
+```
+
+Mặc định hiện tại:
 
 ```text
 https://jeane-unubiquitous-superprecariously.ngrok-free.dev/PKA_ElderGuard
 ```
 
+Ý nghĩa:
+
+- App hiện mặc định gọi vào public backend.
+- Khi backend đổi sang domain public khác, chỉ cần đổi `API_BASE_URL`.
+
 Có thể override khi chạy app:
+
+```bash
+flutter run --dart-define=API_BASE_URL=https://your-domain/PKA_ElderGuard
+```
+
+Ví dụ chạy với URL public hiện tại:
+
+```bash
+flutter run --dart-define=API_BASE_URL=https://jeane-unubiquitous-superprecariously.ngrok-free.dev/PKA_ElderGuard
+```
+
+Ví dụ đổi sang domain public khác:
 
 ```bash
 flutter run --dart-define=API_BASE_URL=https://your-domain/PKA_ElderGuard

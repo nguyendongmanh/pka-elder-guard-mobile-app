@@ -4,11 +4,10 @@ abstract final class AppConfig {
       'https://jeane-unubiquitous-superprecariously.ngrok-free.dev/PKA_ElderGuard';
 
   static String get baseUrl {
-    if (_baseUrlOverride.isNotEmpty) {
-      return _baseUrlOverride;
-    }
+    final rawBaseUrl =
+        _baseUrlOverride.isNotEmpty ? _baseUrlOverride : _defaultBaseUrl;
 
-    return _defaultBaseUrl;
+    return _normalizeBaseUrl(rawBaseUrl);
   }
 
   static Map<String, String> get defaultHeaders {
@@ -18,5 +17,18 @@ abstract final class AppConfig {
     }
 
     return const <String, String>{};
+  }
+
+  static String _normalizeBaseUrl(String value) {
+    final trimmed = value.trim();
+    if (trimmed.isEmpty) {
+      return _defaultBaseUrl;
+    }
+
+    if (trimmed.endsWith('/')) {
+      return trimmed.substring(0, trimmed.length - 1);
+    }
+
+    return trimmed;
   }
 }

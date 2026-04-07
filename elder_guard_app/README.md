@@ -24,8 +24,17 @@ dart format lib
 ## Ghi chú
 
 - App hiện ưu tiên Android.
-- Base URL backend có thể override bằng:
+- App dùng một biến URL duy nhất là `API_BASE_URL`.
+- Mặc định hiện tại:
+
+```bash
+https://jeane-unubiquitous-superprecariously.ngrok-free.dev/PKA_ElderGuard
+```
+
+- Đổi sang public link bằng:
 
 ```bash
 flutter run --dart-define=API_BASE_URL=https://your-domain/PKA_ElderGuard
 ```
+
+- Nếu dùng thiết bị thật thay vì emulator, đổi sang IP LAN hoặc domain public của backend.
